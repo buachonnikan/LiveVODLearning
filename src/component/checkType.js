@@ -28,19 +28,19 @@ class CheckUser {
     if (this.user == undefined) this.user = new CheckUser();
     return this.user;
   }
-  checkTypeGetName(type, mustlogin) {
+
+  isLogin() {
     return new Promise((resT, err) => {
       this.axiosAuthen
         .get("/_api/whoami")
         .then(res => {
-          if (type.includes(res.data.type)) {
-            resT(res.data.name);
-          } else {
-            window.location = "/401";
-          }
+          resT({ loggedin: true, user: res.data });
         })
-        .catch(e => (mustlogin ? (window.location = "/401") : null));
+        .catch(e => resT({ loggedin: false }));
     });
+  }
+  static axiosAuthen() {
+    return axiosAuthen;
   }
 }
 

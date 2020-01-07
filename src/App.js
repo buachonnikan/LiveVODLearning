@@ -8,21 +8,37 @@ import Video from "./component/video";
 import GoLive from "./component/goLive";
 import Form from "./component/form";
 import Page401 from "./component/Page401";
-// import user from "./component/checkType";
 import NavHome from "./component/navHome";
+import userr from "./component/checkType";
+import CourseVideo from "./component/courseVideo";
 import { LoggedContext } from "./context/LoggedContext";
 
-// const Userr = user.initt();
+const Userr = userr.initt();
 
 function App() {
-  // const [name, setName] = useState();
-  // useEffect(() => {
-  //   Userr.checkTypeGetName(["t", "s"], false).then(name => setName(name));
-  // });
   const [isLogged, setLogged] = useState(false);
+  const [user, setUser] = useState({});
+  const [sent, setSent] = useState(false);
+  useState(() => {
+    Userr.isLogin().then(res => {
+      if (res.loggedin) {
+        setUser(res.user);
+        setLogged(true);
+        setSent(true);
+      }
+    });
+  });
   return (
     <>
-      <LoggedContext.Provider value={isLogged}>
+      <LoggedContext.Provider
+        value={{
+          isLogged: isLogged,
+          setLogged: setLogged,
+          user: user,
+          setUser: setUser,
+          sent: sent
+        }}
+      >
         <NavHome />
         {/* <hr /> */}
         <BrowserRouter>
@@ -33,6 +49,7 @@ function App() {
             <Route path="/goLive" component={GoLive} />
             <Route path="/form" component={Form} />
             <Route path="/video/:streamkey" component={Video} />
+            <Route path="/course-video/:streamkey" component={CourseVideo} />
             <Route path="/401" component={Page401} />
           </Switch>
         </BrowserRouter>

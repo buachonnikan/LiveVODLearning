@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../css/base.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
@@ -7,9 +7,8 @@ import { Paper, TextField, Grid } from "@material-ui/core";
 import Navbar from "./nav";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
-// import { EditContext } from "../context/EditContext";
+import { LoggedContext } from "../context/LoggedContext";
 import axios from "axios";
-import user from "./checkType";
 
 const useStyles = makeStyles({
   arrow: {
@@ -55,19 +54,25 @@ const useStyles = makeStyles({
   }
 });
 
-const Userr = user.initt();
 const InpForm = ({ finishForm, chooseFile }) => {
-  // const { toggleEdit, isFinish } = useContext(EditContext);
   const classes = useStyles();
   const [title, setTitle] = useState();
   const [subject, setSubject] = useState();
   const [dateTime, setdateTime] = useState();
   const [description, setDescription] = useState();
   const [edit, setEdit] = useState(false);
-  // const check = true;
   const [url, setUrl] = useState();
+  const { isLogged, user, sent } = useContext(LoggedContext);
   useEffect(() => {
-    Userr.checkTypeGetName(["t"], true).then(name => console.log(name));
+    if (sent) {
+      if (isLogged) {
+        if (user.type !== "t") {
+          window.location = "/401";
+        }
+      } else {
+        window.location = "/401";
+      }
+    }
   });
   const getCookie = cname => {
     var name = cname + "=";
@@ -76,11 +81,9 @@ const InpForm = ({ finishForm, chooseFile }) => {
     for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
       while (c.charAt(0) === " ") {
-        //==
         c = c.substring(1);
       }
       if (c.indexOf(name) === 0) {
-        //==
         return c.substring(name.length, c.length);
       }
     }
@@ -114,7 +117,11 @@ const InpForm = ({ finishForm, chooseFile }) => {
         description: description
       })
       .then(res => {
-        setUrl(res.data.rtmp);
+        setTitle(res.data.title);
+        setSubject(res.data.subject);
+        setdateTime(new Date(res.data.dateTime).toLocaleString());
+        setDescription(res.data.description);
+        setUrl(res.data._id);
         setEdit(true);
       })
       .catch(function(err) {
@@ -178,15 +185,17 @@ const InpForm = ({ finishForm, chooseFile }) => {
                         <div>
                           <div className="subform" id="form-title">
                             <p className="textForm">Title:</p>
-                            <p>{title}</p>
+                            <p className="yay">{title}</p>
                           </div>
                           <div className="subform" id="form-subject">
                             <p className="textForm">Subject:</p>
-                            <p>{subject}</p>
+                            <p className="yay">{subject}</p>
                           </div>
                           <div className="subform" id="form-date">
                             <p className="textForm">Date:</p>
-                            <p>{dateTime}</p>
+                            <p className="yay" id="dateTime">
+                              {dateTime}
+                            </p>
                           </div>
                           <div className="subform">
                             <p className="textForm">Description:</p>

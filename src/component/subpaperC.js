@@ -29,7 +29,7 @@ function Subpaper(props) {
   };
   return (
     <div style={classes.root}>
-      <Link to={"/video/" + props.id} style={classes.Link}>
+      <Link to={"/course-video/" + props.id} style={classes.Link}>
         <Grid container>
           <Grid item style={classes.video}></Grid>
           <Grid item xs={1}></Grid>

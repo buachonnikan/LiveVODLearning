@@ -1,0 +1,21 @@
+@media only screen and (max-height: 840px) {
+  .m button {
+    width: 24vh;
+    height: 6vh;
+    border-radius: 2rem;
+    border: none;
+    margin: 0px 30px 30px 30px;
+    font-weight: 600;
+    font-size: 2.5vh;
+    color: white;
+    cursor: pointer;
+  }
+}
+@media only screen and (max-width: 520px) {
+  #search {
+    width: 200px;
+  }
+  #name {
+    font-size: 5vw;
+  }
+}

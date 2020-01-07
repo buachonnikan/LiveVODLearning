@@ -7,7 +7,7 @@ import Base from "../css/base.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "./paper";
-import Schedule from "./schedule";
+import ScheduleLive from "./schedule-live";
 
 const useStyles = makeStyles({
   arrow: {
@@ -37,7 +37,6 @@ const Live = () => {
       .get("/_api/getlivetoday")
       .then(res => {
         setLive(res.data);
-        // console.log(res.data);
       })
       .catch(err => {
         // setError(err.message);
@@ -47,7 +46,6 @@ const Live = () => {
       .get("/_api/getlivenow")
       .then(res => {
         setNow(res.data);
-        // console.log(res.data);
       })
       .catch(err => {
         // setError(err.message);
@@ -76,7 +74,7 @@ const Live = () => {
                   <Paper live={now} />
                 </Grid>
                 <Grid item xs={6}>
-                  <Schedule live={livee} />
+                  <ScheduleLive live={livee} />
                   {/* เอาinstructorมาด้วย */}
                 </Grid>
               </Grid>

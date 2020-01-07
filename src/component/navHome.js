@@ -1,93 +1,89 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../css/base.css";
 import { Paper } from "@material-ui/core";
-import user from "./checkType";
 import { LoggedContext } from "../context/LoggedContext";
 
-const Userr = user.initt();
-
-const getCookie = cname => {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-};
-
-var axiosAuthen = axios.create({
-  headers: { Authorixation: "Bearer " + getCookie("cookie") }
-});
-
-let logged = false;
-
 const NavHome = () => {
-  const { isLogged } = useContext(LoggedContext);
+  const { isLogged, setLogged, user, setUser } = useContext(LoggedContext);
   const [log, setLog] = useState(false);
-  const [user, setU] = useState("");
-  const [pass, setP] = useState("");
-  const [name, setName] = useState({});
-  const loggedin = true;
-  useEffect(() => {
-    Userr.checkTypeGetName(["t", "s"], false).then(name => setName(name));
-  });
+  const [username, setU] = useState("");
+  const [password, setP] = useState("");
+  const [success, setSuccess] = useState(true);
   const handelSubmit = e => {
     e.preventDefault();
-    setU(user);
-    setP(pass);
+    setU(username);
+    setP(password);
 
     axios
       .post("/_api/login", {
-        username: user,
-        password: pass
+        username: username,
+        password: password
       })
       .then(res => {
-        setName(res.data);
-        console.log(res.data);
+        setUser({ name: res.data.name, type: res.data.type });
         setLog(false);
-        logged = !logged;
+        setLogged(true);
+        setSuccess(res.data.success);
         document.cookie =
           "cookie=" + res.data.cookie + "; expires=" + res.data.exp + ";";
-        console.log(name.name);
+        // console.log(user.name);
       })
       .catch(function(err) {});
   };
 
-  const test = () => {
-    logged = !logged;
-    setLog(logged);
+  const clickLogin = () => {
+    setLog(!log);
+  };
+  const clickLogout = () => {
+    document.cookie = "cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    setLogged(false);
+    setU("");
+    setP("");
   };
 
   return (
-    <div>
-      <div className="login-but" onClick={test}>
-        Login {name.name}
-      </div>
-      {isLogged ? <p>yay1</p> : <p>yay2</p>}
+    <div className="navhome">
+      {/* test */}
+      {isLogged ? (
+        <div className="logged">
+          {/* {!success ? <p id="errorLogin">wrong Username or Password</p> : null} */}
+          <div className="login-name">{user.name}</div>
+          <div className="login-but" onClick={clickLogout}>
+            Logout
+          </div>
+        </div>
+      ) : (
+        <div className="logged">
+          <div className="login-but" onClick={clickLogin}>
+            Login
+          </div>
+        </div>
+      )}
       {log ? (
-        <Paper className="log-contain">
-          <form className="login-form" onSubmit={handelSubmit}>
-            <div className="i">
-              <label>Username: </label>
-              <input value={user} onChange={e => setU(e.target.value)}></input>
-            </div>
-            <div className="i">
-              <label>Password: </label>
-              <input value={pass} onChange={e => setP(e.target.value)}></input>
-            </div>
-            <button type="submit" id="login-but">
-              Login
-            </button>
-          </form>
-        </Paper>
+        <div className="log-contain">
+          <Paper className="log-box">
+            <form className="login-form" onSubmit={handelSubmit}>
+              <div className="i">
+                <label>Username: </label>
+                <input
+                  value={username}
+                  onChange={e => setU(e.target.value)}
+                ></input>
+              </div>
+              <div className="i">
+                <label>Password: </label>
+                <input
+                  value={password}
+                  onChange={e => setP(e.target.value)}
+                ></input>
+              </div>
+              <button type="submit" id="login-but">
+                Login
+              </button>
+            </form>
+          </Paper>
+        </div>
       ) : (
         <div></div>
       )}

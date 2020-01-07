@@ -11,7 +11,7 @@ import { Player } from "video-react";
 import Chat from "./chat";
 import "../../node_modules/video-react/dist/video-react.css";
 
-class Video extends Component {
+class CourseVideo extends Component {
   state = {
     id: this.props.match.params.streamkey,
     live: {
@@ -71,10 +71,9 @@ class Video extends Component {
           <div className="description">Subject: {this.state.live.subject}</div>
           <Player fluid={false} width={800} playsInline>
             {/* <Player playInline> */}
-            <VideoSource
-              isVideoChild
+            <source
               src={
-                "http://10.2.148.98/_livevod/" + this.state.id + "/index.m3u8"
+                "http://10.2.148.98/_livevod/" + this.state.id + "/index.mp4"
               }
             />
           </Player>
@@ -100,4 +99,4 @@ class Video extends Component {
   }
 }
 
-export default Video;
+export default CourseVideo;
