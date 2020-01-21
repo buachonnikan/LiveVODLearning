@@ -8,8 +8,10 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
 import VideoSource from "./videoSource";
 import { Player } from "video-react";
-import Chat from "./chat";
+import ChatVideo from "./chatVideo";
 import "../../node_modules/video-react/dist/video-react.css";
+
+// ทำHistory*********************************************************
 
 class CourseVideo extends Component {
   state = {
@@ -20,7 +22,8 @@ class CourseVideo extends Component {
       subject: "",
       dateTime: "",
       description: "",
-      files: []
+      files: [],
+      chat: []
     }
   };
   handleChange(event) {
@@ -60,7 +63,7 @@ class CourseVideo extends Component {
         </Grid>
         <Grid item xs={7} className="content-v">
           <div className="head-video">
-            <Link to="/live">
+            <Link to="/course">
               <ArrowBackIosIcon className="arrow" />
             </Link>
             {this.state.live.title}
@@ -70,10 +73,9 @@ class CourseVideo extends Component {
           </div>
           <div className="description">Subject: {this.state.live.subject}</div>
           <Player fluid={false} width={800} playsInline>
-            {/* <Player playInline> */}
             <source
               src={
-                "http://10.2.148.98/_livevod/" + this.state.id + "/index.mp4"
+                "http://10.2.153.154/_livevod/" + this.state.id + "/index.mp4"
               }
             />
           </Player>
@@ -84,7 +86,7 @@ class CourseVideo extends Component {
           Attachment:
           {this.state.live.files.map(l => (
             <a
-              href={"http://10.2.148.98/files/" + l.name}
+              href={"http://10.2.153.154/files/" + l.name}
               download={l.name.split("-")[1]}
             >
               {l.name.split("-")[1]}
@@ -92,7 +94,7 @@ class CourseVideo extends Component {
           ))}
         </Grid>
         <Grid item xs={4} className="chat">
-          <Chat room={this.state.id} />
+          <ChatVideo c={this.state.live.chat} />
         </Grid>
       </Grid>
     );

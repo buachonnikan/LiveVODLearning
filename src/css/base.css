@@ -274,18 +274,6 @@ button:focus {
   flex-basis: 70px;
 }
 .login-name {
-  /* height: 30px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #536400;
-  float: right;
-  width: 60px;
-  text-align: center;
-  position: fixed;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  top: 5%;
-  left: 90%; */
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
@@ -484,4 +472,75 @@ button:focus {
 }
 .time-chat {
   font-size: 10px;
+}
+
+/* .filter {
+
+} */
+.filter_but {
+  height: 60px;
+  width: 150px;
+  margin-left: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+#filter_s {
+  background-color: #e78500;
+}
+#filter_t {
+  background-color: #ffce00;
+}
+.course-paper {
+  width: 100%;
+  height: 50vh;
+  min-height: 350px;
+  padding: 20px;
+  overflow: auto;
+}
+.tname {
+  text-decoration: none;
+  color: black;
+}
+.search {
+  margin-bottom: 20px;
+}
+.teacher-course {
+  margin: 0px 0px 20px 10px;
+  display: flex;
+  align-items: center;
+}
+#tpic {
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+#Tpic {
+  width: 80px;
+  height: 80px;
+  background-color: gray;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.head-content {
+  display: flex;
+  align-items: center;
+}
+.subhead {
+  font-size: 70px !important;
+  display: inline-block;
+  color: #ffce00;
+  margin: 0;
+  font-weight: bolder;
+}
+
+.testt {
+  column-count: 2;
 }

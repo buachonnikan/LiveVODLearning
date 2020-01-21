@@ -11,7 +11,9 @@ import Page401 from "./component/Page401";
 import NavHome from "./component/navHome";
 import userr from "./component/checkType";
 import CourseVideo from "./component/courseVideo";
+import TList from "./component/tList";
 import { LoggedContext } from "./context/LoggedContext";
+import TCourse from "./component/tCourse";
 
 const Userr = userr.initt();
 
@@ -50,6 +52,9 @@ function App() {
             <Route path="/form" component={Form} />
             <Route path="/video/:streamkey" component={Video} />
             <Route path="/course-video/:streamkey" component={CourseVideo} />
+            <Route path="/teacher-list" component={TList} />
+            <Route path="/teacher/:tname" component={TCourse} />
+            <Route path="/:tname/:streamkey" component={CourseVideo} />
             <Route path="/401" component={Page401} />
           </Switch>
         </BrowserRouter>

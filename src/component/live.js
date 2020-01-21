@@ -22,7 +22,6 @@ const useStyles = makeStyles({
     border: "5px solid pink"
   },
   test: {
-    // height: "1000px",
     background: "pink"
   }
 });
@@ -38,19 +37,13 @@ const Live = () => {
       .then(res => {
         setLive(res.data);
       })
-      .catch(err => {
-        // setError(err.message);
-        // setLoad(true);
-      });
+      .catch(err => {});
     axios
       .get("/_api/getlivenow")
       .then(res => {
         setNow(res.data);
       })
-      .catch(err => {
-        // setError(err.message);
-        // setLoad(true);
-      });
+      .catch(err => {});
   }, []);
 
   return (
@@ -65,17 +58,19 @@ const Live = () => {
               <Link to="/home">
                 <ArrowBackIosIcon className={classes.arrow} />
               </Link>
-              {/* <h1 className="head">LIVE</h1> */}
               <div className="head">LIVE</div>
             </div>
             <div>
               <Grid container spacing={6}>
                 <Grid item xs={6}>
-                  <Paper live={now} />
+                  <Paper
+                    live={now}
+                    head="กำลังถ่ายทอดสดอยู่ในขณะนี้"
+                    type="l"
+                  />
                 </Grid>
                 <Grid item xs={6}>
                   <ScheduleLive live={livee} />
-                  {/* เอาinstructorมาด้วย */}
                 </Grid>
               </Grid>
             </div>

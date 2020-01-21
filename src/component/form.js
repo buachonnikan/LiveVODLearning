@@ -14,7 +14,6 @@ const Form = () => {
       id: 1
     }
   ]);
-  // const [check, setCheck] = useState(false);
 
   const finishForm = (title, subject, datetime, description) => {
     setForm([
@@ -29,11 +28,7 @@ const Form = () => {
     ]);
   };
 
-  return (
-    // <EditContextProvider>
-    <InpForm finishForm={finishForm} />
-    // </EditContextProvider>
-  );
+  return <InpForm finishForm={finishForm} />;
 };
 
 export default Form;

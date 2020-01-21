@@ -19,9 +19,6 @@ function Schedule(props) {
           <div>
             {props.live.map(l => (
               <div>
-                {/* <div>
-                  {new Date(l.dateTime).toLocaleString().split(", ")[0]}
-                </div> */}
                 <div key={l._id} className="sub-schedule" id="schedule">
                   <p>
                     <span style={classes.bold}>Title: </span>

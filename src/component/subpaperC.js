@@ -29,13 +29,16 @@ function Subpaper(props) {
   };
   return (
     <div style={classes.root}>
-      <Link to={"/course-video/" + props.id} style={classes.Link}>
+      <Link to={props.go + props.id} style={classes.Link}>
         <Grid container>
           <Grid item style={classes.video}></Grid>
           <Grid item xs={1}></Grid>
           <Grid item style={classes.test}>
             <div style={classes.title}>title: {props.title}</div>
             <div style={classes.instructor}>instructor: {props.instructor}</div>
+            <div style={classes.time}>
+              date: {new Date(props.time).toLocaleString().split(", ")[0]}
+            </div>
             <div style={classes.time}>
               time: {new Date(props.time).toLocaleString().split(", ")[1]}
             </div>

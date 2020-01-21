@@ -29,31 +29,32 @@ const useStyles = makeStyles({
     width: "40px",
     height: "auto",
     color: "black"
+  },
+  search: {
+    marginBottom: "20px"
   }
 });
 
-const Course = () => {
+const TList = () => {
   const classes = useStyles();
-  const [video, setVideo] = useState([]);
+  const [instructor, setInstructor] = useState([]);
   useEffect(() => {
     axios
-      .get("/_api/getall")
+      .get("/_api/getinstructor")
       .then(res => {
-        setVideo(res.data);
+        setInstructor(res.data);
       })
       .catch(err => {});
   }, []);
-  const Video = video.map(data => (
-    <SubpaperC
-      title={data.title}
-      instructor={data.instructor}
-      time={data.dateTime}
-      key={data._id}
-      id={data._id}
-      rtmp={data.rtmp}
-      back="/course"
-      go="/course-video/"
-    />
+  const name = instructor.map(data => (
+    <Link className="tname" to={"/teacher/" + data.name}>
+      <div className="teacher-course">
+        <div id="tpic" className="set-center">
+          {data.name[0]}
+        </div>
+        <div>{data.name}</div>
+      </div>
+    </Link>
   ));
   return (
     <div>
@@ -65,26 +66,14 @@ const Course = () => {
           <div className="content">
             <div className="head-content">
               <div>
-                <Link to="/home">
+                <Link to="/course">
                   <ArrowBackIosIcon className={classes.arrow} />
                 </Link>
-                <h1 className="head">COURSE</h1>
-              </div>
-              <div className="filter">
-                <Link to="/teacher-list">
-                  <button class="filter_but" id="filter_t">
-                    อาจารย์ผู้สอน
-                  </button>
-                </Link>
-                <Link to="/subject-list">
-                  <button class="filter_but" id="filter_s">
-                    รายชื่อวิชา
-                  </button>
-                </Link>
+                <h1 className="subhead">รายชื่ออาจารย์ผู้สอน</h1>
               </div>
             </div>
             <div>
-              <div className="search">
+              <div className={classes.search}>
                 <Grid container alignItems="flex-end">
                   <Grid item>
                     <Search />
@@ -95,14 +84,11 @@ const Course = () => {
                 </Grid>
               </div>
               <Paper className="course-paper">
-                <Grid container>
-                  <Grid item xs={6}>
-                    {Video}
-                  </Grid>
-                  <Grid item xs={6}>
-                    yay2
-                  </Grid>
-                </Grid>
+                {instructor.length > 5 ? (
+                  <div className="testt">{name}</div>
+                ) : (
+                  <div>{name}</div>
+                )}
               </Paper>
             </div>
           </div>
@@ -112,4 +98,4 @@ const Course = () => {
   );
 };
 
-export default Course;
+export default TList;
