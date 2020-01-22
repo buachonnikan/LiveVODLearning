@@ -11,8 +11,6 @@ import {
   makeStyles,
   createMuiTheme
 } from "@material-ui/core/styles";
-import SubpaperC from "./subpaperC";
-import axios from "axios";
 
 const CssTextField = withStyles({
   root: {
@@ -29,32 +27,14 @@ const useStyles = makeStyles({
     width: "40px",
     height: "auto",
     color: "black"
+  },
+  search: {
+    marginBottom: "20px"
   }
 });
 
-const Course = () => {
+const List = props => {
   const classes = useStyles();
-  const [video, setVideo] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/_api/getall")
-      .then(res => {
-        setVideo(res.data);
-      })
-      .catch(err => {});
-  }, []);
-  const Video = video.map(data => (
-    <SubpaperC
-      title={data.title}
-      instructor={data.instructor}
-      time={data.dateTime}
-      key={data._id}
-      id={data._id}
-      rtmp={data.rtmp}
-      back="/course"
-      go="/course-video/"
-    />
-  ));
   return (
     <div>
       <Grid container>
@@ -65,26 +45,14 @@ const Course = () => {
           <div className="content">
             <div className="head-content">
               <div>
-                <Link to="/home">
+                <Link to="/course">
                   <ArrowBackIosIcon className={classes.arrow} />
                 </Link>
-                <h1 className="head">COURSE</h1>
-              </div>
-              <div className="filter">
-                <Link to="/teacher-list">
-                  <button class="filter_but" id="filter_t">
-                    อาจารย์ผู้สอน
-                  </button>
-                </Link>
-                <Link to="/subject-list">
-                  <button class="filter_but" id="filter_s">
-                    รายชื่อวิชา
-                  </button>
-                </Link>
+                <h1 className="subhead">{props.head}</h1>
               </div>
             </div>
             <div>
-              <div className="search">
+              <div className={classes.search}>
                 <Grid container alignItems="flex-end">
                   <Grid item>
                     <Search />
@@ -95,8 +63,11 @@ const Course = () => {
                 </Grid>
               </div>
               <Paper className="course-paper">
-                {Video}
-                {/* <div className="cp">{Video}</div> */}
+                {props.list.length > 5 ? (
+                  <div className="testt">{props.list}</div>
+                ) : (
+                  <div>{props.list}</div>
+                )}
               </Paper>
             </div>
           </div>
@@ -106,4 +77,4 @@ const Course = () => {
   );
 };
 
-export default Course;
+export default List;

@@ -36,6 +36,7 @@ function Subpaper(props) {
           <Grid item style={classes.test}>
             <div style={classes.title}>title: {props.title}</div>
             <div style={classes.instructor}>instructor: {props.instructor}</div>
+            {/* <div style={classes.instructor}>subject: {props.subject}</div> */}
             <div style={classes.time}>
               date: {new Date(props.time).toLocaleString().split(", ")[0]}
             </div>

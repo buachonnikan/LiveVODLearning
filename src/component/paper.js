@@ -2,6 +2,7 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Subpaper from "./subpaper";
 import SubpaperC from "./subpaperC";
+import { BrowserRouter as route, Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 function paper(props) {
@@ -41,12 +42,26 @@ function paper(props) {
       go="/course-video/"
     />
   ));
+  const subjectCourse = props.live.map(data => (
+    <Link className="tname" to={"/subject/" + data}>
+      <div className="teacher-course">
+        <div id="tpic" className="set-center">
+          {data[0]}
+        </div>
+        <div>{data}</div>
+      </div>
+    </Link>
+  ));
   return (
     <Paper style={classes.paper}>
       <div style={classes.containerVideo}>
         <p>{props.head}</p>
         <div style={classes.containerOverflow}>
-          {props.type == "l" ? liveVideo : courseVideo}
+          {props.type == "l"
+            ? liveVideo
+            : props.type == "sc"
+            ? subjectCourse
+            : courseVideo}
         </div>
       </div>
     </Paper>

@@ -6,7 +6,6 @@ import "../css/base.css";
 import "../css/schedule.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import VideoSource from "./videoSource";
 import { Player } from "video-react";
 import ChatVideo from "./chatVideo";
 import "../../node_modules/video-react/dist/video-react.css";
@@ -54,8 +53,8 @@ class CourseVideo extends Component {
   }
 
   render() {
-    const title = this.state.live.title;
-    const instructor = this.state.live.instructor;
+    // const title = this.state.live.title;
+    // const instructor = this.state.live.instructor;
     return (
       <Grid container style={{ height: "100%" }}>
         <Grid item>

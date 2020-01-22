@@ -2,39 +2,49 @@ import React, { Component } from "react";
 import axios from "axios";
 import SubpaperC from "./subpaperC";
 import Navbar from "./nav";
-import Paper from "./paper";
 import "../css/base.css";
 import { BrowserRouter as route, Link } from "react-router-dom";
-import { Grid, TextField } from "@material-ui/core";
+import { Paper, Grid, TextField } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Search } from "@material-ui/icons";
 
-class TCourse extends Component {
+class SCourse extends Component {
   state = {
-    id: this.props.match.params.tname,
-    video: [],
-    subject: []
+    id: this.props.match.params.sname,
+    video: []
   };
   componentDidMount() {
     let id = this.state.id;
-    console.log(id);
     this.setState({
       id: id
     });
     axios
-      .post("/_api/getvideobyinstructor", {
-        name: id
+      .post("/_api/getvideobysubject", {
+        subject: id
       })
       .then(res => {
+        console.log(res.data);
         this.setState({
-          video: res.data.video,
-          subject: res.data.subjects
+          video: res.data
         });
+        // console.log(this.state.video);
       })
       .catch(function(err) {});
   }
 
   render() {
+    const Video = this.state.video.map(data => (
+      <SubpaperC
+        title={data.title}
+        instructor={data.instructor}
+        time={data.dateTime}
+        key={data._id}
+        id={data._id}
+        rtmp={data.rtmp}
+        back="/course"
+        go="/course-video/"
+      />
+    ));
     return (
       <div>
         <Grid container>
@@ -64,16 +74,7 @@ class TCourse extends Component {
                   </Grid>
                 </div>
                 <Grid container spacing={6}>
-                  <Grid item xs={6}>
-                    <Paper
-                      live={this.state.subject}
-                      head="รายวิชาที่เปิดสอน"
-                      type="sc"
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Paper live={this.state.video} head="วิดิโอทั้งหมด" />
-                  </Grid>
+                  <Paper className="course-paper">{Video}</Paper>
                 </Grid>
               </div>
             </div>
@@ -84,4 +85,4 @@ class TCourse extends Component {
   }
 }
 
-export default TCourse;
+export default SCourse;

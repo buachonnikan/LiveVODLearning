@@ -499,6 +499,9 @@ button:focus {
   padding: 20px;
   overflow: auto;
 }
+.cp {
+  columns: 2;
+}
 .tname {
   text-decoration: none;
   color: black;
@@ -542,5 +545,5 @@ button:focus {
 }
 
 .testt {
-  column-count: 2;
+  column-count: 3;
 }
