@@ -37,48 +37,43 @@ class TCourse extends Component {
   render() {
     return (
       <div>
-        <Grid container>
-          <Grid item>
-            <Navbar />
-          </Grid>
-          <Grid item xs={11}>
-            <div className="content">
-              <div className="head-content">
-                <div className="set-center">
-                  <Link to="/course">
-                    <ArrowBackIosIcon className="arrow" />
-                  </Link>
-                  <div id="Tpic"></div>
-                  <h1 className="subhead">{this.state.id}</h1>
-                </div>
+        <div>
+          <div className="content">
+            <div className="head-content">
+              <div className="set-center">
+                <Link to="/course">
+                  <ArrowBackIosIcon className="arrow" />
+                </Link>
+                <div id="Tpic"></div>
+                <h1 className="subhead">{this.state.id}</h1>
               </div>
-              <div>
-                <div className="search">
-                  <Grid container alignItems="flex-end">
-                    <Grid item>
-                      <Search />
-                    </Grid>
-                    <Grid item>
-                      <TextField label="search" id="search" />
-                    </Grid>
+            </div>
+            <div>
+              <div className="search">
+                <Grid container alignItems="flex-end">
+                  <Grid item>
+                    <Search />
                   </Grid>
-                </div>
-                <Grid container spacing={6}>
-                  <Grid item xs={6}>
-                    <Paper
-                      live={this.state.subject}
-                      head="รายวิชาที่เปิดสอน"
-                      type="sc"
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Paper live={this.state.video} head="วิดิโอทั้งหมด" />
+                  <Grid item>
+                    <TextField label="search" id="search" />
                   </Grid>
                 </Grid>
               </div>
+              <Grid container spacing={6}>
+                <Grid item xs={6}>
+                  <Paper
+                    live={this.state.subject}
+                    head="รายวิชาที่เปิดสอน"
+                    type="sc"
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Paper live={this.state.video} head="วิดิโอทั้งหมด" />
+                </Grid>
+              </Grid>
             </div>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </div>
     );
   }

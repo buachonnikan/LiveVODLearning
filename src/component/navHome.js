@@ -34,6 +34,9 @@ const NavHome = () => {
 
   const clickLogin = () => {
     setLog(!log);
+    setU("");
+    setP("");
+    setSuccess(true);
   };
   const clickLogout = () => {
     document.cookie = "cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
@@ -44,15 +47,24 @@ const NavHome = () => {
 
   return (
     <div className="navhome">
-      {/* test */}
       {isLogged ? (
-        <div className="logged">
-          {/* {!success ? <p id="errorLogin">wrong Username or Password</p> : null} */}
-          <div className="login-name">{user.name}</div>
-          <div className="login-but" onClick={clickLogout}>
-            Logout
+        success ? (
+          <div className="logged">
+            <div className="login-name">{user.name}</div>
+            <div className="login-but" onClick={clickLogout}>
+              Logout
+            </div>
           </div>
-        </div>
+        ) : (
+          (alert("Wrong Username or Password"),
+          (
+            <div className="logged">
+              <div className="login-but" onClick={clickLogin}>
+                Login
+              </div>
+            </div>
+          ))
+        )
       ) : (
         <div className="logged">
           <div className="login-but" onClick={clickLogin}>
@@ -84,9 +96,7 @@ const NavHome = () => {
             </form>
           </Paper>
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
     </div>
   );
 };

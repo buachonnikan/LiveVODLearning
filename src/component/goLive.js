@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Schedule from "./schedule";
-import Navbar from "./nav";
 import Grid from "@material-ui/core/Grid";
 import "../css/base.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -11,11 +10,6 @@ import { LoggedContext } from "../context/LoggedContext";
 import userr from "./checkType";
 
 const useStyles = makeStyles({
-  arrow: {
-    width: "40px",
-    height: "auto",
-    color: "black"
-  },
   paper: {
     height: "65vh"
   },
@@ -48,23 +42,17 @@ const LoggedInHome = () => {
         setLive(res.data);
         console.log(res.data);
       })
-      .catch(err => {
-        // setError(err.message);
-        // setLoad(true);
-      });
+      .catch(err => {});
   }, []);
 
   return (
     <div>
-      <Grid container>
-        <Grid item>
-          <Navbar />
-        </Grid>
-        <Grid item xs={11}>
+      <div>
+        <div>
           <div className="content">
             <div>
               <Link to="/home">
-                <ArrowBackIosIcon className={classes.arrow} />
+                <ArrowBackIosIcon id="arrow" />
               </Link>
               <h1 className="head">GO LIVE!</h1>
             </div>
@@ -85,8 +73,8 @@ const LoggedInHome = () => {
               </Grid>
             </div>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </div>
   );
 };

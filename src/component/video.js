@@ -74,7 +74,7 @@ class Video extends Component {
             <VideoSource
               isVideoChild
               src={
-                "http://10.2.153.154/_livevod/" + this.state.id + "/index.m3u8"
+                "http://10.2.145.29/_livevod/" + this.state.id + "/index.m3u8"
               }
             />
           </Player>
@@ -85,7 +85,7 @@ class Video extends Component {
           Attachment:
           {this.state.live.files.map(l => (
             <a
-              href={"http://10.2.153.154/files/" + l.name}
+              href={"http://10.2.145.29/files/" + l.name}
               download={l.name.split("-")[1]}
             >
               {l.name.split("-")[1]}

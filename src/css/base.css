@@ -15,13 +15,29 @@ button:focus {
 }
 
 /* nav */
+.n {
+  position: absolute;
+}
 .sud {
   height: 150px;
   width: 100%;
 }
 
+/* base */
+.r {
+  display: none;
+}
 .content {
-  padding: 80px 60px 0px;
+  padding: 60px 100px 0px;
+}
+.head-part {
+  display: flex;
+  align-items: center;
+}
+#arrow {
+  width: 40px;
+  height: auto;
+  color: black;
 }
 .head {
   font-size: 100px !important;
@@ -30,11 +46,75 @@ button:focus {
   margin: 0;
   font-weight: bolder;
 }
-.arrow {
-  width: 60px;
-  height: auto;
-  color: black;
+
+.search {
+  margin-bottom: 20px;
 }
+.s-contain {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 30px;
+}
+/* ----------------------- */
+
+/* pagination */
+.paginate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.paginat-but {
+  background-color: #536400;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: none;
+}
+/* ----------------------------- */
+
+/* course */
+.filter_but {
+  height: 60px;
+  width: 150px;
+  margin-left: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+#filter_s {
+  background-color: #e78500;
+}
+#filter_t {
+  background-color: #ffce00;
+}
+.course-paper {
+  width: 100%; /*แก้*/
+  height: 50vh; /*แก้*/
+  min-height: 350px;
+  padding: 20px;
+  overflow: auto;
+}
+/* -------------------- */
+
+/* live */
+.live-part {
+  display: flex;
+  justify-content: space-between;
+}
+.paper-size {
+  width: 40vw;
+  max-height: 500px;
+  min-height: 250px;
+}
+
+/* -------------------- */
+
 .content-v {
   padding: 80px 60px 0px;
 }
@@ -327,65 +407,11 @@ button:focus {
   height: 100vh;
   /* border: 2px solid red; */
 }
-.home-nav {
-  position: fixed;
-  width: 100%;
-  height: 120px;
-}
-#logo {
-  width: 80px;
-  height: 80px;
-  border: 2px solid #536400;
-  border-radius: 50%;
-}
-.menu-but {
-  text-align: center;
-  position: relative;
-  flex-direction: column;
-}
-/* .m {
-  position: absolute;
-  transform: translate(-50%, 0);
-  left: 50%;
-} */
-.m button {
-  width: 200px;
-  height: 50px;
-  border-radius: 2rem;
-  border: none;
-  margin: 0px 30px 30px 30px;
-  font-weight: 600;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
-}
-#name {
-  font-size: 35px;
-  font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-#search {
-  width: 40vw;
-}
-#search-contain {
-  margin: 5vh 0 7vh 0;
-}
-#live-but {
-  background-color: #536400;
-}
-#course-but {
-  background-color: #ffce00;
-}
-#golive-but {
-  background-color: #e78500;
-}
 
-/* ---end home--- */
-
+/* schedule live */
 .schedule-live {
   background-color: #ffce00 !important ;
-  height: 65vh;
+  scrollbar-color: black transparent;
 }
 .schedule {
   background-color: #f2f3ee !important ;
@@ -413,12 +439,10 @@ button:focus {
   width: 380px;
   height: 500px;
   background: #f2f3ee;
-  /* position: relative; */
   display: flex;
   flex-direction: column;
 }
 .chat-area {
-  /* border: 1px solid green; */
   height: 100%;
   overflow: auto;
 }
@@ -473,41 +497,13 @@ button:focus {
 .time-chat {
   font-size: 10px;
 }
-
-/* .filter {
-
-} */
-.filter_but {
-  height: 60px;
-  width: 150px;
-  margin-left: 10px;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-#filter_s {
-  background-color: #e78500;
-}
-#filter_t {
-  background-color: #ffce00;
-}
-.course-paper {
-  width: 100%;
-  height: 50vh;
-  min-height: 350px;
-  padding: 20px;
-  overflow: auto;
-}
 .cp {
   columns: 2;
 }
+
 .tname {
   text-decoration: none;
   color: black;
-}
-.search {
-  margin-bottom: 20px;
 }
 .teacher-course {
   margin: 0px 0px 20px 10px;
@@ -531,11 +527,6 @@ button:focus {
   border-radius: 50%;
   margin-right: 10px;
 }
-
-.head-content {
-  display: flex;
-  align-items: center;
-}
 .subhead {
   font-size: 70px !important;
   display: inline-block;
@@ -546,4 +537,7 @@ button:focus {
 
 .testt {
   column-count: 3;
+}
+.none {
+  display: none;
 }

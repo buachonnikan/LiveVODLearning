@@ -3,31 +3,14 @@ import axios from "axios";
 import { BrowserRouter as Route, Link } from "react-router-dom";
 import Navbar from "./nav";
 import Grid from "@material-ui/core/Grid";
-import Base from "../css/base.css";
+import "../css/base.css";
+import "../css/responsive.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "./paper";
 import ScheduleLive from "./schedule-live";
-
-const useStyles = makeStyles({
-  arrow: {
-    width: "40px",
-    height: "auto",
-    color: "black"
-  },
-  paper: {
-    height: "65vh"
-  },
-  border: {
-    border: "5px solid pink"
-  },
-  test: {
-    background: "pink"
-  }
-});
+import Subpaper from "./subpaper";
 
 const Live = () => {
-  const classes = useStyles();
   const [livee, setLive] = useState([]);
   const [now, setNow] = useState([]);
 
@@ -48,35 +31,58 @@ const Live = () => {
 
   return (
     <div>
-      <Grid container>
-        <Grid item>
-          <Navbar />
-        </Grid>
-        <Grid item xs={11}>
-          <div className="content">
-            <div>
-              <Link to="/home">
-                <ArrowBackIosIcon className={classes.arrow} />
-              </Link>
-              <div className="head">LIVE</div>
-            </div>
-            <div>
-              <Grid container spacing={6}>
-                <Grid item xs={6}>
-                  <Paper
-                    live={now}
-                    head="กำลังถ่ายทอดสดอยู่ในขณะนี้"
-                    type="l"
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <ScheduleLive live={livee} />
-                </Grid>
-              </Grid>
-            </div>
+      <div className="content">
+        <div>
+          <Link to="/home">
+            <ArrowBackIosIcon id="arrow" />
+          </Link>
+          <div className="head">LIVE</div>
+        </div>
+        <div className="nor">
+          <div className="live-part">
+            <Paper live={now} head="กำลังถ่ายทอดสดอยู่ในขณะนี้" type="l" />
+            <ScheduleLive live={livee} />
           </div>
-        </Grid>
-      </Grid>
+        </div>
+        <div className="r">
+          <div className="r-live-part">
+            <Subpaper
+              title={"title"}
+              instructor={"instructor"}
+              time={"dateTime"}
+              key={"id"}
+              id={"id"}
+              rtmp={"rtmp"}
+            />
+            <Subpaper
+              title={"title"}
+              instructor={"instructor"}
+              time={"dateTime"}
+              key={"id"}
+              id={"id"}
+              rtmp={"rtmp"}
+            />
+            <Subpaper
+              title={"title"}
+              instructor={"instructor"}
+              time={"dateTime"}
+              key={"id"}
+              id={"id"}
+              rtmp={"rtmp"}
+            />
+            {/* {now.map(data => (
+            <Subpaper
+              title={data.title}
+              instructor={data.instructor}
+              time={data.dateTime}
+              key={data._id}
+              id={data._id}
+              rtmp={data.rtmp}
+            />
+          ))} */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../css/home.css";
-import "../css/home_r.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Grid, TextField } from "@material-ui/core";
 import { Search } from "@material-ui/icons";

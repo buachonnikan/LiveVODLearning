@@ -37,11 +37,8 @@ const List = props => {
   const classes = useStyles();
   return (
     <div>
-      <Grid container>
-        <Grid item>
-          <Navbar />
-        </Grid>
-        <Grid item xs={11}>
+      <div>
+        <div>
           <div className="content">
             <div className="head-content">
               <div>
@@ -71,8 +68,8 @@ const List = props => {
               </Paper>
             </div>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </div>
   );
 };

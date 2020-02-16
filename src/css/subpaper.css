@@ -1,0 +1,32 @@
+.root {
+  margin-bottom: 30px;
+}
+.video {
+  background: gray;
+  width: 150px;
+  height: 100px;
+  display: inline-block;
+}
+.title {
+  width: auto;
+}
+.instructor {
+  width: 100%;
+}
+.time {
+  width: 100%;
+}
+.Link {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (max-width: 414px) {
+  .video {
+    width: 100vw;
+    height: 25vh;
+  }
+  .n {
+    display: none;
+  }
+}

@@ -7,6 +7,9 @@ function Subpaper(props) {
     root: {
       marginBottom: "30px"
     },
+    testt: {
+      display: "flex"
+    },
     video: {
       background: "gray",
       width: "150px",
@@ -30,10 +33,9 @@ function Subpaper(props) {
   return (
     <div style={classes.root}>
       <Link to={props.go + props.id} style={classes.Link}>
-        <Grid container>
-          <Grid item style={classes.video}></Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item style={classes.test}>
+        <div style={classes.testt}>
+          <div item style={classes.video}></div>
+          <div item style={classes.test}>
             <div style={classes.title}>title: {props.title}</div>
             <div style={classes.instructor}>instructor: {props.instructor}</div>
             {/* <div style={classes.instructor}>subject: {props.subject}</div> */}
@@ -43,8 +45,8 @@ function Subpaper(props) {
             <div style={classes.time}>
               time: {new Date(props.time).toLocaleString().split(", ")[1]}
             </div>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </Link>
     </div>
   );

@@ -1,0 +1,77 @@
+/* ipad pro */
+@media only screen and (max-width: 1024px) {
+  /* live */
+  .live-part {
+  }
+  /* ---------- */
+}
+/* ipad */
+@media only screen and (max-width: 768px) {
+  .head {
+    font-size: 70px !important;
+  }
+  .content {
+    padding: 80px 0px 0px 50px;
+  }
+  /* live */
+  /* .live-part {
+    flex-direction: column;
+    align-items: center;
+  }
+  .paper-size {
+    width: 100%;
+  } */
+  /* ---------- */
+
+  /* course */
+  .filter_but {
+    height: 45px;
+    width: 100px;
+    font-size: 14px;
+  }
+  /* ---------- */
+}
+/* iphone5 */
+@media only screen and (max-width: 320px) {
+  /* live */
+  .live-part {
+    /* flex-direction: column;
+    justify-content: space-between; */
+  }
+  /* ---------- */
+}
+/* iphone6 */
+@media only screen and (max-width: 414px) {
+  .r {
+    display: initial;
+  }
+  .nor {
+    display: none;
+  }
+  .content {
+    padding: 80px 0px 0px 50px;
+  }
+  .head {
+    font-size: 48px !important;
+  }
+  #arrow {
+    width: 20px;
+    height: auto;
+    color: black;
+  }
+  /* live */
+  .r-live-part {
+    overflow: auto;
+    height: 79vh;
+    padding: 0px 50px 0px 0px;
+    scrollbar-color: transparent transparent;
+  }
+  /* .live-part {
+    flex-direction: column;
+    align-items: center;
+  }
+  .paper-size {
+    width: 100%;
+  } */
+  /* ---------- */
+}

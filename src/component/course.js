@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as route, Link } from "react-router-dom";
 import Navbar from "./nav";
 import { Paper, Grid, TextField } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 import "../css/base.css";
+import "../css/responsive.css";
+// import "../css/course.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Search } from "@material-ui/icons";
+import { Search, ContactlessOutlined } from "@material-ui/icons";
 import { black } from "@material-ui/core/colors";
-import {
-  withStyles,
-  makeStyles,
-  createMuiTheme
-} from "@material-ui/core/styles";
+import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 import SubpaperC from "./subpaperC";
 import axios from "axios";
 
@@ -24,22 +23,22 @@ const CssTextField = withStyles({
     }
   }
 })(TextField);
-const useStyles = makeStyles({
-  arrow: {
-    width: "40px",
-    height: "auto",
-    color: "black"
-  }
-});
-
 const Course = () => {
-  const classes = useStyles();
   const [video, setVideo] = useState([]);
+  // const [p1, setP1] = useState(1);
+  // const [p2, setP2] = useState(2);
+  // const [p3, setP3] = useState(3);
+  const [page, setPage] = useState(1);
+  const [maxPage, setMax] = useState(1);
+  var amount;
   useEffect(() => {
     axios
-      .get("/_api/getall")
+      .post("/_api/getall", {
+        page: 1
+      })
       .then(res => {
-        setVideo(res.data);
+        setVideo(res.data.videos);
+        setMax(res.data.maxpage);
       })
       .catch(err => {});
   }, []);
@@ -55,22 +54,33 @@ const Course = () => {
       go="/course-video/"
     />
   ));
+  const handelSubmit = e => {
+    e.preventDefault();
+    axios
+      .post("/_api/getall", {
+        page: page
+      })
+      .then(res => {
+        setVideo(res.data.videos);
+      });
+  };
+  const LinkV = video.map(data => "/course-video/" + data._id);
   return (
     <div>
-      <Grid container>
-        <Grid item>
-          <Navbar />
-        </Grid>
-        <Grid item xs={11}>
+      <div className="none">
+        {(amount = Array.from(Array(maxPage), (x, index) => index + 1))}
+      </div>
+      <div>
+        <div>
           <div className="content">
-            <div className="head-content">
+            <div className="head-part">
               <div>
                 <Link to="/home">
-                  <ArrowBackIosIcon className={classes.arrow} />
+                  <ArrowBackIosIcon id="arrow" />
                 </Link>
                 <h1 className="head">COURSE</h1>
               </div>
-              <div className="filter">
+              <div className="filter nor">
                 <Link to="/teacher-list">
                   <button class="filter_but" id="filter_t">
                     อาจารย์ผู้สอน
@@ -85,23 +95,42 @@ const Course = () => {
             </div>
             <div>
               <div className="search">
-                <Grid container alignItems="flex-end">
-                  <Grid item>
-                    <Search />
-                  </Grid>
-                  <Grid item>
-                    <CssTextField label="search" id="search" />
-                  </Grid>
-                </Grid>
+                <div class="s-contain">
+                  <Search />
+                  <Autocomplete
+                    id="search"
+                    freeSolo
+                    options={video.map(option => option.title)}
+                    renderInput={params => (
+                      <CssTextField
+                        {...params}
+                        label="search"
+                        id="search"
+                        margin="normal"
+                      ></CssTextField>
+                    )}
+                  />
+                </div>
               </div>
-              <Paper className="course-paper">
-                {Video}
-                {/* <div className="cp">{Video}</div> */}
-              </Paper>
+              <Paper className="course-paper">{Video}</Paper>
             </div>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
+
+      {/* <button className="paginat-but set-center">{"<"}</button> */}
+      <form onSubmit={handelSubmit} className="paginate">
+        {amount.map(i => (
+          <button
+            className="paginat-but set-center"
+            value={i}
+            onClick={e => setPage(e.target.value)}
+          >
+            {i}
+          </button>
+        ))}
+      </form>
+      {/* <button className="paginat-but set-center">{">"}</button> */}
     </div>
   );
 };

@@ -148,9 +148,6 @@ const InpForm = ({ finishForm, chooseFile }) => {
   return (
     <div>
       <Grid container>
-        <Grid item>
-          <Navbar />
-        </Grid>
         <Grid item xs={11}>
           <div className="content">
             <div>

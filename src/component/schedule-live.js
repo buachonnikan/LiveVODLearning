@@ -1,5 +1,6 @@
 import React from "react";
 import { Paper } from "@material-ui/core";
+import "../css/base.css";
 
 function ScheduleLive(props) {
   //   const classes = useStyles();
@@ -10,7 +11,7 @@ function ScheduleLive(props) {
   };
 
   return (
-    <Paper className="schedule-live">
+    <Paper className="schedule-live paper-size">
       <div className="container-video">
         <p id="today">Today Schedule</p>
         <div className="container-overflow-s">

@@ -3,13 +3,11 @@ import Paper from "@material-ui/core/Paper";
 import Subpaper from "./subpaper";
 import SubpaperC from "./subpaperC";
 import { BrowserRouter as route, Link } from "react-router-dom";
+import "../css/base.css";
 // import { Link } from "react-router-dom";
 
 function paper(props) {
   const classes = {
-    paper: {
-      height: "65vh"
-    },
     containerVideo: {
       padding: "20px",
       position: "relative"
@@ -17,7 +15,7 @@ function paper(props) {
     containerOverflow: {
       overflow: "auto",
       width: "auto",
-      height: "51vh"
+      minHeight: "250px"
     }
   };
   const liveVideo = props.live.map(data => (
@@ -53,7 +51,7 @@ function paper(props) {
     </Link>
   ));
   return (
-    <Paper style={classes.paper}>
+    <Paper className="paper-size">
       <div style={classes.containerVideo}>
         <p>{props.head}</p>
         <div style={classes.containerOverflow}>
