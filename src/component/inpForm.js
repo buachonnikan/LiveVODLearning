@@ -1,61 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../css/base.css";
+import "../css/form.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import { Paper, TextField, Grid } from "@material-ui/core";
-import Navbar from "./nav";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 import { LoggedContext } from "../context/LoggedContext";
 import axios from "axios";
 
-const useStyles = makeStyles({
-  arrow: {
-    width: "40px",
-    height: "auto",
-    color: "black"
-  },
-  paper: {
-    width: "500px",
-    minHeight: "440px",
-    height: "61vh",
-    boxShadow: "none",
-    backgroundColor: "#F2F3EE",
-    marginRight: "auto",
-    marginLeft: "auto",
-    marginTop: "50px",
-    position: "relative"
-  },
-  paper2before: {
-    width: "500px",
-    height: "160px",
-    borderStyle: "dashed",
-    borderWidth: "5px",
-    borderRadius: "2rem",
-    borderColor: "#DDE0CE",
-    boxShadow: "none",
-    marginRight: "auto",
-    marginLeft: "auto",
-    marginTop: "50px",
-    position: "relative"
-  },
-  paper2after: {
-    width: "500px",
-    height: "200px",
-    backgroundColor: "#F2F3EE",
-    boxShadow: "none",
-    marginRight: "auto",
-    marginLeft: "auto",
-    marginTop: "50px"
-  },
-  border: {
-    border: "2px solid pink"
-  }
-});
-
 const InpForm = ({ finishForm, chooseFile }) => {
-  const classes = useStyles();
   const [title, setTitle] = useState();
   const [subject, setSubject] = useState();
   const [dateTime, setdateTime] = useState();
@@ -147,66 +101,225 @@ const InpForm = ({ finishForm, chooseFile }) => {
   };
   return (
     <div>
-      <Grid container>
-        <Grid item xs={11}>
-          <div className="content">
-            <div>
+      <div>
+        <div>
+          <div className="content-form">
+            <div className="head-part-form">
               <Link to="/goLive">
-                <ArrowBackIosIcon className={classes.arrow} />
+                <ArrowBackIosIcon id="arrow" />
               </Link>
               <h1 className="head">START LIVE</h1>
             </div>
-            <div classNamme="inner-content">
-              <Grid container spacing={6}>
-                <Grid item xs={6} className="inner-content">
-                  {edit ? (
-                    <img
-                      src="https://uppic.cc/d/5DzR"
-                      className="step"
-                      width="100"
-                      height="100"
-                      alt="stepone"
-                    />
-                  ) : (
-                    <img
-                      src="https://uppic.cc/d/5Dqu"
-                      className="step"
-                      width="100"
-                      height="100"
-                      alt="steponeafter"
-                    />
-                  )}
-                  <Paper className={classes.paper}>
-                    <div className="containerForm">
-                      {edit ? (
-                        <div>
-                          <div className="subform" id="form-title">
-                            <p className="textForm">Title:</p>
-                            <p className="yay">{title}</p>
-                          </div>
-                          <div className="subform" id="form-subject">
-                            <p className="textForm">Subject:</p>
-                            <p className="yay">{subject}</p>
-                          </div>
-                          <div className="subform" id="form-date">
-                            <p className="textForm">Date:</p>
-                            <p className="yay" id="dateTime">
-                              {dateTime}
-                            </p>
-                          </div>
-                          <div className="subform">
-                            <p className="textForm">Description:</p>
-                            <p>{description}</p>
-                          </div>
-                          <div className="containbut">
-                            <div className="form-button edit" onClick={check}>
-                              EDIT
+            <div className="nor">
+              <div classNamme="inner-content">
+                <div className="add-live-part">
+                  <div className="firststep">
+                    {edit ? (
+                      <img src="https://uppic.cc/d/5DzR" className="step" />
+                    ) : (
+                      <img src="https://uppic.cc/d/5Dqu" className="step" />
+                    )}
+                    <Paper className="firststep-paper softgreen">
+                      {/*หลังnextstep */}
+                      <div className="form-container">
+                        {edit ? (
+                          <div>
+                            <div className="subform">
+                              <p className="textForm">Title:</p>
+                              <p className="yay">{title}</p>
                             </div>
+                            <div className="subform">
+                              <p className="textForm">Subject:</p>
+                              <p className="yay">{subject}</p>
+                            </div>
+                            <div className="subform">
+                              <p className="textForm">Date:</p>
+                              <p className="yay" id="dateTime">
+                                {dateTime}
+                              </p>
+                            </div>
+                            <div className="subform">
+                              <p className="textForm">Description:</p>
+                              <p>{description}</p>
+                            </div>
+                            {/* <div className="containbut">
+                              <div className="form-button edit" onClick={check}>
+                                EDIT
+                              </div>
+                            </div> */}
+                          </div>
+                        ) : (
+                          /*ก่อนnextstep */
+                          <form onSubmit={handelSubmit}>
+                            <div className="subform">
+                              <p className="textForm">Title:</p>
+                              <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                value={title}
+                                placeholder="Your video title"
+                                className="form-inp"
+                                onChange={e => setTitle(e.target.value)}
+                              />
+                            </div>
+                            <div className="subform">
+                              <p className="textForm">Subject:</p>
+                              <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                value={subject}
+                                placeholder="Your video subject"
+                                className="form-inp"
+                                onChange={e => setSubject(e.target.value)}
+                              />
+                            </div>
+                            <div className="subform">
+                              <p className="textForm">Date:</p>
+                              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <DateTimePicker
+                                  value={dateTime}
+                                  onChange={setdateTime}
+                                  className="dateTime"
+                                />
+                              </MuiPickersUtilsProvider>
+                            </div>
+                            <div>
+                              <p className="textForm">Description</p>
+                              <TextField
+                                id="outlined-multiline-static"
+                                multiline
+                                rows="3"
+                                name="description"
+                                value={description}
+                                defaultValue="Default Value"
+                                className="des"
+                                variant="outlined"
+                                onChange={e => setDescription(e.target.value)}
+                              />
+                            </div>
+                            <div className="containbut">
+                              <button type="submit" className="form-button">
+                                NEXT STEP>>
+                              </button>
+                            </div>
+                          </form>
+                        )}
+                      </div>
+                    </Paper>
+                  </div>
+                  <div>
+                    {edit ? (
+                      <img
+                        src="https://uppic.cc/d/5Dzs"
+                        className="step"
+                        width="100"
+                        height="100"
+                        alt=""
+                        steptwo
+                      />
+                    ) : (
+                      <img
+                        src="https://uppic.cc/d/5DzR"
+                        className="step"
+                        width="100"
+                        height="100"
+                        alt="stepteoafter"
+                      />
+                    )}
+                    {edit ? (
+                      <Paper className="secondstep-paper-active softgreen">
+                        <div className="url-container">
+                          <div className="getlink">GET KEY</div>
+                          <p className="url">{url}</p>
+                          <form>
+                            <input type="file" onChange={handleFile} />
+                          </form>
+                        </div>
+                      </Paper>
+                    ) : (
+                      <div className="secondstep">
+                        <Paper className="secondstep-paper"></Paper>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="r-gl">
+              {edit ? (
+                <div>
+                  <div className="steps">
+                    <div className="stepline">
+                      <img
+                        src="https://uppic.cc/d/5DzR"
+                        className="step-r one"
+                      />
+                      <p> -------- </p>
+                      <img
+                        src="https://uppic.cc/d/5Dzs"
+                        className="step-r one"
+                      />
+                    </div>
+                  </div>
+                  {/* second step */}
+                  <div className="set-center">
+                    <Paper className="firststep-paper set-center-col">
+                      <div>
+                        <div className="subform">
+                          <p className="textForm">Title:</p>
+                          <p className="yay">{title}</p>
+                        </div>
+                        <div className="subform">
+                          <p className="textForm">Subject:</p>
+                          <p className="yay">{subject}</p>
+                        </div>
+                        <div className="subform">
+                          <p className="textForm">Date:</p>
+                          <p className="yay">{dateTime}</p>
+                        </div>
+                        <div className="subform">
+                          <p className="textForm">Description:</p>
+                          <p>{description}</p>
+                        </div>
+                        <div className="getlink-container">
+                          <div>
+                            <div className="getlink">GET KEY</div>
+                            <div className="">{url}</div>
                           </div>
                         </div>
-                      ) : (
+                        <form>
+                          <input type="file" onChange={handleFile} />
+                        </form>
+                      </div>
+                      <Link to="/goLive">
+                        <div className="finish">FINISH</div>
+                      </Link>
+                    </Paper>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div className="steps">
+                    <div className="stepline">
+                      <img
+                        src="https://uppic.cc/d/5Dqu"
+                        className="step-r two"
+                      />
+                      <p> -------- </p>
+                      <img
+                        src="https://uppic.cc/d/5DzR"
+                        className="step-r two"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    {/*first step*/}
+                    <div className="set-center">
+                      <Paper className="firststep-paper">
                         <form onSubmit={handelSubmit}>
-                          <div className="subform" id="form-title">
+                          <div className="subform">
                             <p className="textForm">Title:</p>
                             <input
                               type="text"
@@ -218,7 +331,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                               onChange={e => setTitle(e.target.value)}
                             />
                           </div>
-                          <div className="subform" id="form-subject">
+                          <div className="subform">
                             <p className="textForm">Subject:</p>
                             <input
                               type="text"
@@ -230,7 +343,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                               onChange={e => setSubject(e.target.value)}
                             />
                           </div>
-                          <div className="subform" id="form-date">
+                          <div className="subform">
                             <p className="textForm">Date:</p>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                               <DateTimePicker
@@ -240,7 +353,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                               />
                             </MuiPickersUtilsProvider>
                           </div>
-                          <div className="subform">
+                          <div>
                             <p className="textForm">Description</p>
                             <TextField
                               id="outlined-multiline-static"
@@ -249,7 +362,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                               name="description"
                               value={description}
                               defaultValue="Default Value"
-                              className={classes.textField}
+                              className="des"
                               variant="outlined"
                               onChange={e => setDescription(e.target.value)}
                             />
@@ -260,67 +373,15 @@ const InpForm = ({ finishForm, chooseFile }) => {
                             </button>
                           </div>
                         </form>
-                      )}
+                      </Paper>
                     </div>
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  {edit ? (
-                    <img
-                      src="https://uppic.cc/d/5Dzs"
-                      className="step"
-                      width="100"
-                      height="100"
-                      alt=""
-                      steptwo
-                    />
-                  ) : (
-                    <img
-                      src="https://uppic.cc/d/5DzR"
-                      className="step"
-                      width="100"
-                      height="100"
-                      alt="stepteoafter"
-                    />
-                  )}
-                  {edit ? (
-                    <Paper className={classes.paper2after}>
-                      <div className="containerForm2a">
-                        <div className="getlink">GET LINK</div>
-                        <div className="link">
-                          <p className="l">Stream key: {url}</p>
-                        </div>
-                        <form>
-                          <input type="file" onChange={handleFile} />
-                        </form>
-                        {/* <form className="fileContainer">
-                          <label className="fileLabel">
-                            UPLOAD FILE
-                            <input
-                              type="file"
-                              onChange={handleFile}
-                              id="file"
-                            />}
-                          </label>
-                        </form> */}
-                      </div>
-                    </Paper>
-                  ) : (
-                    <Paper className={classes.paper2before}>
-                      <div className="containerForm2b">
-                        {/* Stream key: {url} */}
-                      </div>
-                      {/* <form>
-                        <input type="file" onChange={handleFile} />
-                      </form> */}
-                    </Paper>
-                  )}
-                </Grid>
-              </Grid>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </div>
   );
 };

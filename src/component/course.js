@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as route, Link } from "react-router-dom";
-import Navbar from "./nav";
-import { Paper, Grid, TextField } from "@material-ui/core";
+import { Paper, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import "../css/base.css";
 import "../css/responsive.css";
@@ -112,14 +111,32 @@ const Course = () => {
                   />
                 </div>
               </div>
-              <Paper className="course-paper">{Video}</Paper>
+              <div className="course-content nor">
+                <Paper className="course-paper">{Video}</Paper>
+              </div>
+              <div className="r">
+                <div className="r-course-part">
+                  {Video}
+                  <form onSubmit={handelSubmit} className="paginate">
+                    {amount.map(i => (
+                      <button
+                        className="paginat-but set-center"
+                        value={i}
+                        onClick={e => setPage(e.target.value)}
+                      >
+                        {i}
+                      </button>
+                    ))}
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* <button className="paginat-but set-center">{"<"}</button> */}
-      <form onSubmit={handelSubmit} className="paginate">
+      <form onSubmit={handelSubmit} className="paginate nor">
         {amount.map(i => (
           <button
             className="paginat-but set-center"

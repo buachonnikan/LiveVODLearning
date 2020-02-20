@@ -9,6 +9,7 @@ import { BrowserRouter as Route, Link } from "react-router-dom";
 import { Player } from "video-react";
 import ChatVideo from "./chatVideo";
 import "../../node_modules/video-react/dist/video-react.css";
+import VideoSource from "./videoSource";
 
 // ทำHistory*********************************************************
 
@@ -57,9 +58,6 @@ class CourseVideo extends Component {
     // const instructor = this.state.live.instructor;
     return (
       <Grid container style={{ height: "100%" }}>
-        <Grid item>
-          <Navbar />
-        </Grid>
         <Grid item xs={7} className="content-v">
           <div className="head-video">
             <Link to="/course">
@@ -72,9 +70,13 @@ class CourseVideo extends Component {
           </div>
           <div className="description">Subject: {this.state.live.subject}</div>
           <Player fluid={false} width={800} playsInline>
-            <source
+            {/* <Player playInline> */}
+            <VideoSource
+              isVideoChild
               src={
-                "http://10.2.145.29/_livevod/" + this.state.id + "/index.mp4"
+                "http://35.198.225.213/_livevod/" +
+                this.state.id +
+                "/index.m3u8"
               }
             />
           </Player>
@@ -85,7 +87,7 @@ class CourseVideo extends Component {
           Attachment:
           {this.state.live.files.map(l => (
             <a
-              href={"http://10.2.145.29/files/" + l.name}
+              href={"http://35.198.225.213/files/" + l.name}
               download={l.name.split("-")[1]}
             >
               {l.name.split("-")[1]}

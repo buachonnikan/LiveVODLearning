@@ -46,40 +46,16 @@ const Live = () => {
         </div>
         <div className="r">
           <div className="r-live-part">
-            <Subpaper
-              title={"title"}
-              instructor={"instructor"}
-              time={"dateTime"}
-              key={"id"}
-              id={"id"}
-              rtmp={"rtmp"}
-            />
-            <Subpaper
-              title={"title"}
-              instructor={"instructor"}
-              time={"dateTime"}
-              key={"id"}
-              id={"id"}
-              rtmp={"rtmp"}
-            />
-            <Subpaper
-              title={"title"}
-              instructor={"instructor"}
-              time={"dateTime"}
-              key={"id"}
-              id={"id"}
-              rtmp={"rtmp"}
-            />
-            {/* {now.map(data => (
-            <Subpaper
-              title={data.title}
-              instructor={data.instructor}
-              time={data.dateTime}
-              key={data._id}
-              id={data._id}
-              rtmp={data.rtmp}
-            />
-          ))} */}
+            {now.map(data => (
+              <Subpaper
+                title={data.title}
+                instructor={data.instructor}
+                time={data.dateTime}
+                key={data._id}
+                id={data._id}
+                rtmp={data.rtmp}
+              />
+            ))}
           </div>
         </div>
       </div>

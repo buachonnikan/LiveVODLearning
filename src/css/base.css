@@ -27,6 +27,9 @@ button:focus {
 .r {
   display: none;
 }
+.r-gl {
+  display: none;
+}
 .content {
   padding: 60px 100px 0px;
 }
@@ -45,6 +48,10 @@ button:focus {
   color: #536400;
   margin: 0;
   font-weight: bolder;
+}
+
+.softgreen {
+  background-color: #f2f3ee !important ;
 }
 
 .search {
@@ -94,11 +101,13 @@ button:focus {
   background-color: #ffce00;
 }
 .course-paper {
-  width: 100%; /*แก้*/
   height: 50vh; /*แก้*/
   min-height: 350px;
   padding: 20px;
   overflow: auto;
+}
+.course-content {
+  /* border: 1px solid black; */
 }
 /* -------------------- */
 
@@ -130,7 +139,7 @@ button:focus {
 .container-overflow-s {
   overflow: auto;
   width: auto;
-  height: 53vh;
+  height: 47vh;
 }
 
 /* video */
@@ -161,74 +170,9 @@ button:focus {
   display: inherit;
 }
 
-.startlive {
-  width: 300px;
-  height: 300px;
-  border: none;
-  background-color: #bb0000;
-  font-size: 40px;
-  color: white;
-  text-align: center;
-  font-weight: 700;
-  border-radius: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  cursor: pointer;
-}
-
-.startbut {
-  position: relative;
-}
-
-/* ---add live--- */
-.containerForm {
-  margin: 30px;
-  position: absolute;
-  transform: translate(0%, -50%);
-  top: 43%;
-  width: 85%;
-}
-.containerForm2a {
-  margin: 30px;
-  position: relative;
-  position: absolute;
-}
-.containerForm2b {
-  margin: 30px;
-}
-.subform {
-  display: grid;
-  margin-top: 15px;
-}
-#form-title {
-  grid-template-columns: 10% 90%;
-}
-#form-subject {
-  grid-template-columns: 15% 85%;
-}
-#form-date {
-  grid-template-columns: 10% 40% 10% 40%;
-}
-.textForm {
-  font-weight: 800;
-  font-size: 18px;
-  margin: 10px 0px !important;
-}
-.form-inp {
-  margin-left: 10px;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: white;
-  height: 40px;
-}
 #errorLogin {
   color: red;
   position: absolute;
-}
-.yay {
-  margin-left: 20px;
 }
 #dateTime {
   width: 200px;
@@ -243,46 +187,14 @@ button:focus {
   text-align: center;
   margin-top: 20px;
 }
-.form-button {
-  box-shadow: none !important;
-  border: 2px solid #536400;
-  border-radius: 0.5rem;
-  width: 25vw;
-  height: 35px;
-  font-weight: 800;
-  background-color: white;
-  cursor: pointer;
-  color: #536400;
-}
-.form-button:hover {
-  background-color: #536400;
-  color: white;
-}
 
 .dateTime {
   width: 200px;
 }
-.getlink {
-  font-weight: 800;
-  font-size: 20px;
-}
-.link {
-  width: 440px;
-  margin-top: 20px;
-  height: 50px;
-  background-color: white;
-  border-radius: 2rem;
-  position: relative;
-}
-.l {
-  position: absolute;
-  transform: translate(15%, -10%);
-  font-weight: bold;
-}
 .inputFile {
   margin: 23px 5px;
 }
-.fileContainer [type="file"] {
+/* .fileContainer [type="file"] {
   border: 1px solid black;
   cursor: inherit;
   display: block;
@@ -303,33 +215,7 @@ button:focus {
   cursor: pointer;
   background-color: #536400;
   color: white;
-}
-.fileContainer:hover {
-  background-color: #ffce00;
-}
-
-#file {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  cursor: pointer;
-}
-
-.fileContainer [type="file"] {
-  cursor: pointer;
-}
-
-.inner-content {
-  height: 100%;
-}
-.step {
-  position: absolute;
-  z-index: 1;
-  width: 6.5vw;
-  height: auto;
-}
+} */
 
 /* login */
 .navhome {
@@ -408,14 +294,18 @@ button:focus {
   /* border: 2px solid red; */
 }
 
+/* schedule */
+.schedule {
+  width: 40vw;
+  max-height: 500px;
+  min-height: 250px;
+}
+/* -------------- */
+
 /* schedule live */
 .schedule-live {
   background-color: #ffce00 !important ;
   scrollbar-color: black transparent;
-}
-.schedule {
-  background-color: #f2f3ee !important ;
-  height: 65vh;
 }
 .sub-schedule {
   margin-bottom: 40px;

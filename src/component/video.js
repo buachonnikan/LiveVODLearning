@@ -45,19 +45,12 @@ class Video extends Component {
         });
         console.log(this.state.live);
       })
-      .catch(function(err) {
-        // console.log(err);
-      });
+      .catch(function(err) {});
   }
 
   render() {
-    const title = this.state.live.title;
-    const instructor = this.state.live.instructor;
     return (
       <Grid container style={{ height: "100%" }}>
-        <Grid item>
-          <Navbar />
-        </Grid>
         <Grid item xs={7} className="content-v">
           <div className="head-video">
             <Link to="/live">
@@ -74,7 +67,9 @@ class Video extends Component {
             <VideoSource
               isVideoChild
               src={
-                "http://10.2.145.29/_livevod/" + this.state.id + "/index.m3u8"
+                "http://35.198.225.213/_livevod/" +
+                this.state.id +
+                "/index.m3u8"
               }
             />
           </Player>
@@ -85,7 +80,7 @@ class Video extends Component {
           Attachment:
           {this.state.live.files.map(l => (
             <a
-              href={"http://10.2.145.29/files/" + l.name}
+              href={"http://35.198.225.213/files/" + l.name}
               download={l.name.split("-")[1]}
             >
               {l.name.split("-")[1]}

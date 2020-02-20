@@ -3,6 +3,7 @@ import axios from "axios";
 import Schedule from "./schedule";
 import Grid from "@material-ui/core/Grid";
 import "../css/base.css";
+import "../css/golive.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,27 +51,37 @@ const LoggedInHome = () => {
       <div>
         <div>
           <div className="content">
-            <div>
+            <div className="head-part">
               <Link to="/home">
                 <ArrowBackIosIcon id="arrow" />
               </Link>
               <h1 className="head">GO LIVE!</h1>
+              <div className="r">
+                <Link to="/form">
+                  <button className="startlive">
+                    START LIVE
+                    <i class="fas fa-video"></i>
+                  </button>
+                </Link>
+              </div>
             </div>
-            <div>
-              <Grid container spacing={6}>
-                <Grid item xs={6} className="startbut">
-                  <Link to="/form">
-                    <button className="startlive">
-                      START
-                      <br />
-                      LIVE
-                    </button>
-                  </Link>
-                </Grid>
-                <Grid item xs={6}>
-                  <Schedule live={live} t="true" />
-                </Grid>
-              </Grid>
+
+            <div className="golive">
+              <div className="startbut">
+                <Link to="/form">
+                  <button className="startlive">
+                    START
+                    <br />
+                    LIVE
+                  </button>
+                </Link>
+              </div>
+              <div className="r-notfull">
+                <Schedule live={live} t="true" res="n" />
+              </div>
+              <div className="r-full">
+                <Schedule live={live} t="true" res="y" />
+              </div>
             </div>
           </div>
         </div>
