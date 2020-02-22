@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Paper } from "@material-ui/core";
 import "../css/base.css";
 import "../css/responsive.css";
 
 function Schedule(props) {
-  //   const classes = useStyles();
   const classes = {
     bold: {
       fontWeight: "600"
     }
   };
-  // const date = props.live.map(l=>(
+  const [del, steDel] = useState("");
 
-  // ))
   return (
     <div>
       {props.res == "n" ? (
@@ -23,6 +21,9 @@ function Schedule(props) {
               <div id="schedule">
                 {props.live.map(l => (
                   <div>
+                    <div alt="delete" onClick="">
+                      delete
+                    </div>
                     <div key={l._id} className="sub-schedule">
                       <p>
                         <span style={classes.bold}>Title: </span>

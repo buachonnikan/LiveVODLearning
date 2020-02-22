@@ -8,6 +8,8 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 import { LoggedContext } from "../context/LoggedContext";
 import axios from "axios";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import { lightGreen900 } from "material-ui/styles/colors";
 
 const InpForm = ({ finishForm, chooseFile }) => {
   const [title, setTitle] = useState();
@@ -17,6 +19,11 @@ const InpForm = ({ finishForm, chooseFile }) => {
   const [edit, setEdit] = useState(false);
   const [url, setUrl] = useState();
   const { isLogged, user, sent } = useContext(LoggedContext);
+  const muiTheme = getMuiTheme({
+    dateTimePicker: {
+      selectColor: lightGreen900
+    }
+  });
   useEffect(() => {
     if (sent) {
       if (isLogged) {
@@ -177,7 +184,10 @@ const InpForm = ({ finishForm, chooseFile }) => {
                             </div>
                             <div className="subform">
                               <p className="textForm">Date:</p>
-                              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                              <MuiPickersUtilsProvider
+                                utils={DateFnsUtils}
+                                theme={muiTheme}
+                              >
                                 <DateTimePicker
                                   value={dateTime}
                                   onChange={setdateTime}

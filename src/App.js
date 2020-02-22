@@ -16,6 +16,7 @@ import SList from "./component/slist";
 import { LoggedContext } from "./context/LoggedContext";
 import TCourse from "./component/tCourse";
 import SCourse from "./component/sCourse";
+import Edit from "./component/edit";
 
 const Userr = userr.initt();
 
@@ -52,6 +53,7 @@ function App() {
             <Route path="/course" component={Course} />
             <Route path="/goLive" component={GoLive} />
             <Route path="/form" component={Form} />
+            <Route path="/edit/:streamkey" component={Edit} />
             <Route path="/video/:streamkey" component={Video} />
             <Route path="/course-video/:streamkey" component={CourseVideo} />
             <Route path="/teacher-list" component={TList} />
