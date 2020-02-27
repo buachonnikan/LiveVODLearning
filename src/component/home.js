@@ -1,7 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "../css/home.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
 import { Grid, TextField } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import { black } from "@material-ui/core/colors";
@@ -11,6 +17,7 @@ import {
   createMuiTheme
 } from "@material-ui/core/styles";
 import { LoggedContext } from "../context/LoggedContext";
+import { Autocomplete } from "@material-ui/lab";
 
 const getCookie = cname => {
   var name = cname + "=";
@@ -46,29 +53,63 @@ const CssTextField = withStyles({
 
 function Home(props) {
   const { isLogged, user } = useContext(LoggedContext);
+  const [all, setAll] = useState([]);
+  const [s, setSearch] = useState("");
+  let history = useHistory();
+
+  useEffect(() => {
+    axios
+      .get("/_api/getall")
+      .then(res => {
+        setAll(res.data);
+      })
+      .catch(err => {});
+  }, []);
+
+  const handleSearch = e => {
+    e.preventDefault();
+    history.push({
+      pathname: "/course",
+      state: { detail: s }
+    });
+  };
+
   return (
     <div>
-      <div className="home-nav set-center">
-        <div id="logo"></div>
-      </div>
+      <div className="home-nav set-center">{/* <div id="logo"></div> */}</div>
       <div className="home">
         <div className="menu-but set-center">
           <div id="name">Live & VOD Learning @ KU</div>
-          <div id="search-contain">
-            <Grid container alignItems="flex-end" justify="center">
-              <Grid item>
-                <Search />
-              </Grid>
-              <Grid item>
-                <CssTextField label="search" id="search" />
-              </Grid>
-            </Grid>
-          </div>
+          <form className="search" id="search-contain" onSubmit={handleSearch}>
+            <div class="s-contain">
+              <Search />
+              <Autocomplete
+                onChange={(event, value) => setSearch(value)}
+                freeSolo
+                id="search"
+                autoSelect={true}
+                options={all.map(option => option.title)}
+                renderInput={params => (
+                  <CssTextField
+                    {...params}
+                    label="search"
+                    // id="search"
+                    margin="normal"
+                  ></CssTextField>
+                )}
+              />
+            </div>
+          </form>
           <div className="m">
             <Link to="/live">
               <button id="live-but">Live</button>
             </Link>
-            <Link to="/course">
+            <Link
+              to={{
+                pathname: "/course",
+                state: { detail: null }
+              }}
+            >
               <button id="course-but">Course</button>
             </Link>
             <br />

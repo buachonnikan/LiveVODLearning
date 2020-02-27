@@ -24,6 +24,7 @@ const Live = () => {
     axios
       .get("/_api/getlivenow")
       .then(res => {
+        console.log(res.data);
         setNow(res.data);
       })
       .catch(err => {});
@@ -33,7 +34,7 @@ const Live = () => {
     <div>
       <div className="content">
         <div>
-          <Link to="/home">
+          <Link to="/">
             <ArrowBackIosIcon id="arrow" />
           </Link>
           <div className="head">LIVE</div>
@@ -44,7 +45,7 @@ const Live = () => {
             <ScheduleLive live={livee} />
           </div>
         </div>
-        <div className="r">
+        <div className="none">
           <div className="r-live-part">
             {now.map(data => (
               <Subpaper

@@ -3,6 +3,7 @@ import "../css/base.css";
 import axios from "axios";
 import userr from "./checkType";
 import Axios from "axios";
+import moment from "moment";
 
 export function useDidMount(cb) {
   const scope = useRef({ isMounted: false });
@@ -20,7 +21,7 @@ export function useWillUnmount(cb) {
     return cb;
   }, []);
 }
-const Chat = ({ c }) => {
+const Chat = ({ c, t }) => {
   const [chat, setChat] = useState("");
   const [chats, setChats] = useState([]);
   const [timestamp, setTime] = useState();
@@ -35,6 +36,13 @@ const Chat = ({ c }) => {
     var item = colors[Math.floor(Math.random() * colors.length)];
     setColor(item);
   };
+  function time(t, c) {
+    var ms = moment(c).diff(moment(t));
+    var d = moment.duration(ms);
+    var h = Math.floor(d.asHours()) < 0 ? 0 : Math.floor(d.asHours());
+    var s = moment.utc(ms).format("hh:mm:ss");
+    return s;
+  }
   var randomColor = Math.floor(Math.random() * 16777215).toString(16);
   return (
     <div class="for-chat">
@@ -49,7 +57,7 @@ const Chat = ({ c }) => {
               {c.name[0]}
             </div>
             <div className="text-chat">{c.chat}</div>
-            <div className="time-chat">{c.timestamp}</div>
+            <div className="time-chat">{time(t, c.timestamp)}</div>
           </div>
         ))}
       </div>

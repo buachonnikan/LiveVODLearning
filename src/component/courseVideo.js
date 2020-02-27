@@ -54,23 +54,25 @@ class CourseVideo extends Component {
   }
 
   render() {
-    // const title = this.state.live.title;
-    // const instructor = this.state.live.instructor;
     return (
-      <Grid container style={{ height: "100%" }}>
-        <Grid item xs={7} className="content-v">
-          <div className="head-video">
-            <Link to="/course">
-              <ArrowBackIosIcon className="arrow" />
-            </Link>
-            {this.state.live.title}
+      // <Grid container style={{ height: "100%" }}>
+      <div className="contain-video content">
+        <div className="video-live">
+          <div>
+            <div className="head-video">
+              <Link to={{ pathname: "/course", state: { detail: null } }}>
+                <ArrowBackIosIcon className="arrow" />
+              </Link>
+              {this.state.live.title}
+            </div>
+            <div className="description">
+              Instructor : {this.state.live.instructor}
+            </div>
+            <div className="description">
+              Subject: {this.state.live.subject}
+            </div>
           </div>
-          <div className="description">
-            Instructor : {this.state.live.instructor}
-          </div>
-          <div className="description">Subject: {this.state.live.subject}</div>
-          <Player fluid={false} width={800} playsInline>
-            {/* <Player playInline> */}
+          <Player playInline>
             <VideoSource
               isVideoChild
               src={
@@ -80,7 +82,6 @@ class CourseVideo extends Component {
               }
             />
           </Player>
-          <div className="description">ID: {this.state.id}</div>
           <div className="description">
             Description: {this.state.live.description}
           </div>
@@ -93,11 +94,14 @@ class CourseVideo extends Component {
               {l.name.split("-")[1]}
             </a>
           ))}
-        </Grid>
-        <Grid item xs={4} className="chat">
-          <ChatVideo c={this.state.live.chat} />
-        </Grid>
-      </Grid>
+        </div>
+        <div className="chat-contain">
+          <ChatVideo
+            c={this.state.live.chat}
+            time={this.state.live.startTime}
+          />
+        </div>
+      </div>
     );
   }
 }

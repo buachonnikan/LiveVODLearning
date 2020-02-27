@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as route, Link } from "react-router-dom";
+import { BrowserRouter as route, Link, useLocation } from "react-router-dom";
 import { Paper, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import "../css/base.css";
@@ -22,17 +22,18 @@ const CssTextField = withStyles({
     }
   }
 })(TextField);
-const Course = () => {
+const Course = props => {
   const [video, setVideo] = useState([]);
-  // const [p1, setP1] = useState(1);
-  // const [p2, setP2] = useState(2);
-  // const [p3, setP3] = useState(3);
+  const [all, setAll] = useState([]);
+  const [s, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [maxPage, setMax] = useState(1);
   var amount;
+  // const test = useLocation.word;
   useEffect(() => {
+    // console.log(props.location.state.detail);
     axios
-      .post("/_api/getall", {
+      .post("/_api/getpage", {
         page: 1
       })
       .then(res => {
@@ -40,11 +41,29 @@ const Course = () => {
         setMax(res.data.maxpage);
       })
       .catch(err => {});
+    if (props.location.state.detail !== undefined) {
+      axios
+        .post("/_api/getbyword", {
+          word: props.location.state.detail
+        })
+        .then(res => {
+          console.log(res.data);
+          setVideo(res.data);
+        });
+    } else {
+      axios
+        .get("/_api/getall")
+        .then(res => {
+          setAll(res.data);
+        })
+        .catch(err => {});
+    }
   }, []);
   const Video = video.map(data => (
     <SubpaperC
       title={data.title}
       instructor={data.instructor}
+      subject={data.subject}
       time={data.dateTime}
       key={data._id}
       id={data._id}
@@ -56,14 +75,25 @@ const Course = () => {
   const handelSubmit = e => {
     e.preventDefault();
     axios
-      .post("/_api/getall", {
+      .post("/_api/getpage", {
         page: page
       })
       .then(res => {
         setVideo(res.data.videos);
       });
   };
-  const LinkV = video.map(data => "/course-video/" + data._id);
+  const handleSearch = e => {
+    e.preventDefault();
+    console.log(s);
+    axios
+      .post("/_api/getbyword", {
+        word: s
+      })
+      .then(res => {
+        console.log(res.data);
+        setVideo(res.data);
+      });
+  };
   return (
     <div>
       <div className="none">
@@ -72,9 +102,9 @@ const Course = () => {
       <div>
         <div>
           <div className="content">
-            <div className="head-part">
+            <div className="head-part hc">
               <div>
-                <Link to="/home">
+                <Link to="/">
                   <ArrowBackIosIcon id="arrow" />
                 </Link>
                 <h1 className="head">COURSE</h1>
@@ -93,28 +123,30 @@ const Course = () => {
               </div>
             </div>
             <div>
-              <div className="search">
+              <form className="search" onSubmit={handleSearch}>
                 <div class="s-contain">
                   <Search />
                   <Autocomplete
-                    id="search"
+                    onChange={(event, value) => setSearch(value)}
                     freeSolo
-                    options={video.map(option => option.title)}
+                    id="search"
+                    autoSelect={true}
+                    options={all.map(option => option.title)}
                     renderInput={params => (
                       <CssTextField
                         {...params}
                         label="search"
-                        id="search"
+                        // id="search"
                         margin="normal"
                       ></CssTextField>
                     )}
                   />
                 </div>
-              </div>
+              </form>
               <div className="course-content nor">
                 <Paper className="course-paper">{Video}</Paper>
               </div>
-              <div className="r">
+              <div className="none">
                 <div className="r-course-part">
                   {Video}
                   <form onSubmit={handelSubmit} className="paginate">

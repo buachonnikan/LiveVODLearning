@@ -51,10 +51,10 @@ function paper(props) {
     </Link>
   ));
   return (
-    <Paper className="paper-size">
-      <div style={classes.containerVideo}>
+    <Paper className="paper-size softgreen">
+      <div className="container-video">
         <p>{props.head}</p>
-        <div style={classes.containerOverflow}>
+        <div className="container-overflow">
           {props.type == "l"
             ? liveVideo
             : props.type == "sc"

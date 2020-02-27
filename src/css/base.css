@@ -24,6 +24,9 @@ button:focus {
 }
 
 /* base */
+.none {
+  display: none;
+}
 .r {
   display: none;
 }
@@ -49,6 +52,9 @@ button:focus {
   margin: 0;
   font-weight: bolder;
 }
+.hc {
+  justify-content: space-between;
+}
 
 .softgreen {
   background-color: #f2f3ee !important ;
@@ -57,11 +63,18 @@ button:focus {
 .search {
   margin-bottom: 20px;
 }
+#search-sep {
+  width: 35vw;
+}
+#search-sep-v {
+  width: 35vw;
+}
 .s-contain {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 30px;
+  width: 100%;
 }
 /* ----------------------- */
 
@@ -105,6 +118,7 @@ button:focus {
   min-height: 350px;
   padding: 20px;
   overflow: auto;
+  background-color: #f2f3ee !important;
 }
 .course-content {
   /* border: 1px solid black; */
@@ -124,9 +138,6 @@ button:focus {
 
 /* -------------------- */
 
-.content-v {
-  padding: 80px 60px 0px;
-}
 .container-video {
   padding: 20px;
   position: relative;
@@ -134,15 +145,22 @@ button:focus {
 .container-overflow {
   overflow: auto;
   width: auto;
-  height: 60vh;
+  height: 45vh;
 }
 .container-overflow-s {
   overflow: auto;
   width: auto;
-  height: 47vh;
+  height: 43vh;
 }
 
 /* video */
+.contain-video {
+  display: flex;
+  justify-content: space-between;
+}
+.video-live {
+  width: 60%;
+}
 .head-video {
   font-size: 50px;
   color: black;
@@ -240,7 +258,6 @@ button:focus {
   flex-basis: 70px;
 }
 .login-name {
-  cursor: pointer;
   font-size: 15px;
   font-weight: 600;
   color: #536400;
@@ -310,7 +327,6 @@ button:focus {
 .sub-schedule {
   margin-bottom: 40px;
   font-size: 15px;
-  /* border-left: 2px solid black; */
   padding-left: 20px;
   padding-top: 10px;
 }
@@ -325,9 +341,13 @@ button:focus {
 }
 
 /*---------------- chat ----------------*/
+.chat-contain {
+  display: flex;
+  align-items: center;
+}
 .for-chat {
   width: 380px;
-  height: 500px;
+  height: 80%;
   background: #f2f3ee;
   display: flex;
   flex-direction: column;
@@ -413,21 +433,38 @@ button:focus {
 #Tpic {
   width: 80px;
   height: 80px;
-  background-color: gray;
+  background-color: #ffce00;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
 }
 .subhead {
   font-size: 70px !important;
   display: inline-block;
-  color: #ffce00;
   margin: 0;
-  font-weight: bolder;
+  font-family: "Quicksand", "Kanit", sans-serif;
+  font-weight: 600;
 }
-
+.name-sub {
+  font-size: 60px !important;
+  display: inline-block;
+  margin: 0;
+  font-family: "Quicksand", "Kanit", sans-serif;
+  font-weight: 600;
+  color: #536400;
+}
 .testt {
   column-count: 3;
 }
 .none {
   display: none;
+}
+
+/* tlist */
+@import url("https://fonts.googleapis.com/css?family=Kanit:400,600,700|Quicksand:400,500,600,700&display=swap");
+#t-subhead {
+  color: #ffce00;
+}
+#s-subhead {
+  color: #e78500;
 }

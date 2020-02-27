@@ -1,6 +1,16 @@
 *:focus {
   outline: 0;
 }
+.Edit {
+  float: right;
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.Edit:hover {
+  transform: scale(1.1);
+}
 .modal {
   display: flex;
   justify-content: center;
@@ -13,7 +23,7 @@
   justify-content: center;
   align-items: center;
   border: 5px dashed #536400;
-  border-radius: 2rem !important;
+  /* border-radius: 2rem !important; */
 }
 .content-modal {
   width: 300px;

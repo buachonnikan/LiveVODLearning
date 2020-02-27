@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "./component/home";
 import Live from "./component/live";
 import Course from "./component/course";
@@ -16,7 +16,6 @@ import SList from "./component/slist";
 import { LoggedContext } from "./context/LoggedContext";
 import TCourse from "./component/tCourse";
 import SCourse from "./component/sCourse";
-import Edit from "./component/edit";
 
 const Userr = userr.initt();
 
@@ -48,12 +47,10 @@ function App() {
         {/* <hr /> */}
         <BrowserRouter>
           <Switch>
-            <Route path="/home" component={Home} />
             <Route path="/live" component={Live} />
             <Route path="/course" component={Course} />
             <Route path="/goLive" component={GoLive} />
             <Route path="/form" component={Form} />
-            <Route path="/edit/:streamkey" component={Edit} />
             <Route path="/video/:streamkey" component={Video} />
             <Route path="/course-video/:streamkey" component={CourseVideo} />
             <Route path="/teacher-list" component={TList} />
@@ -62,6 +59,7 @@ function App() {
             <Route path="/subject/:sname" component={SCourse} />
             <Route path="/:tname/:streamkey" component={CourseVideo} />
             <Route path="/401" component={Page401} />
+            <Route path="/" component={Home} />
           </Switch>
         </BrowserRouter>
       </LoggedContext.Provider>

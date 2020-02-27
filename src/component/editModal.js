@@ -9,10 +9,10 @@ import "../css/modal.css";
 
 function EditModal(props) {
   const [data, setData] = useState({});
-  const [title, setTitle] = useState(data.title);
-  const [subject, setSubject] = useState(data.subject);
-  const [datetime, setDatetime] = useState(data.dateTime);
-  const [description, setDescription] = useState(data.description);
+  const [title, setTitle] = useState("");
+  const [subject, setSubject] = useState("");
+  const [datetime, setDatetime] = useState();
+  const [description, setDescription] = useState("");
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -32,7 +32,7 @@ function EditModal(props) {
         setData(res.data);
       })
       .catch(function(err) {});
-  });
+  }, []);
 
   const handelSubmit = e => {
     e.preventDefault();
@@ -59,8 +59,8 @@ function EditModal(props) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        edit
+      <button type="button" onClick={handleOpen} className="Edit">
+        <i class="fas fa-edit"></i>
       </button>
       {/* <Modal
         aria-labelledby="simple-modal-title"
@@ -69,11 +69,7 @@ function EditModal(props) {
         onClose={handleClose}
         className="modal"
       > */}
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
+      <Dialog open={open} onClose={handleClose}>
         <Paper className="papersize-modal">
           <div className="content-modal">
             <form onSubmit={handelSubmit}>

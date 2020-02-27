@@ -42,7 +42,7 @@ const List = props => {
           <div className="content">
             <div className="head-content">
               <div>
-                <Link to="/course">
+                <Link to={{ pathname: "/course", state: { detail: null } }}>
                   <ArrowBackIosIcon className={classes.arrow} />
                 </Link>
                 <h1 className="subhead">{props.head}</h1>

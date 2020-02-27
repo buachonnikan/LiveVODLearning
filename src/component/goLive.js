@@ -72,11 +72,11 @@ const LoggedInHome = () => {
         <div>
           <div className="content">
             <div className="head-part">
-              <Link to="/home">
+              <Link to="/">
                 <ArrowBackIosIcon id="arrow" />
               </Link>
               <h1 className="head">GO LIVE!</h1>
-              <div className="r">
+              <div className="none">
                 <Link to="/form">
                   <button className="startlive">
                     START LIVE
@@ -89,10 +89,12 @@ const LoggedInHome = () => {
             <div className="golive">
               <div className="startbut">
                 <Link to="/form">
-                  <button className="startlive">
-                    START
-                    <br />
-                    LIVE
+                  <button className="sl">
+                    <div className="startlive">
+                      START
+                      <br />
+                      LIVE
+                    </div>
                   </button>
                 </Link>
               </div>
@@ -107,49 +109,53 @@ const LoggedInHome = () => {
                             <form onSubmit={deleteLive}>
                               <button
                                 alt="delete"
-                                value={l._id}
-                                onClick={e => setDel(e.target.value)}
+                                className="delete"
+                                onClick={e => setDel(l._id)}
                               >
-                                {console.log(del)}
-                                delete
+                                <i class="fas fa-times"></i>
                               </button>
                             </form>
                             {/* <Link to={"/edit/" + l._id}>edit</Link> */}
                             <EditModal id={l._id} />
                             <div key={l._id} className="sub-schedule">
-                              <p>
-                                <span style={classes.bold}>Title: </span>
+                              <div>
+                                <span style={{ fontWeight: "600" }}>
+                                  Title:{"  "}
+                                </span>
                                 {l.title}
-                              </p>
-                              <p>
-                                <span style={classes.bold}>Subject: </span>
+                              </div>
+                              <div>
+                                <span style={{ fontWeight: "600" }}>
+                                  Subject:{"  "}
+                                </span>
                                 {l.subject}
-                              </p>
-                              <p>
-                                <span style={classes.bold}>Date: </span>{" "}
+                              </div>
+                              <div>
+                                <span style={{ fontWeight: "600" }}>Date:</span>
+                                {"  "}
                                 {
                                   new Date(l.dateTime)
                                     .toLocaleString()
                                     .split(", ")[0]
                                 }
-                              </p>
-                              <p>
-                                <span style={classes.bold}>Time: </span>{" "}
+                              </div>
+                              <div>
+                                <span style={{ fontWeight: "600" }}>Time:</span>
+                                {"  "}
                                 {
                                   new Date(l.dateTime)
                                     .toLocaleString()
                                     .split(", ")[1]
                                 }
-                              </p>
-                              <p>
-                                <span style={classes.bold}>Description: </span>
+                              </div>
+                              <div>
+                                <span style={{ fontWeight: "600" }}>
+                                  Description:{"  "}
+                                </span>
                                 {l.description}
-                              </p>
-                              {live.t ? (
-                                <p id="myInput">Stream key: {l._id}</p>
-                              ) : (
-                                <p></p>
-                              )}
+                              </div>
+                              <div id="myInput">Stream key: {l._id}</div>
+                              {/* <hr /> */}
                             </div>
                           </div>
                         ))}

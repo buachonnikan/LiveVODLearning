@@ -35,10 +35,16 @@ function Subpaper(props) {
     <div className="root">
       <Link to={props.go + props.id} className="Link">
         <Grid container>
-          <Grid item className="video"></Grid>
+          <Grid item className="video">
+            <img
+              src={"/_livevod/" + props.id + "/thumbnail.png"}
+              className="video"
+            />
+          </Grid>
           <Grid item xs={1} className="nor"></Grid>
           <Grid item>
             <div className="title">title: {props.title}</div>
+            <div className="title">subject: {props.subject}</div>
             <div className="instructor">instructor: {props.instructor}</div>
             <div className="time">
               date: {new Date(props.time).toLocaleString().split(", ")[0]}

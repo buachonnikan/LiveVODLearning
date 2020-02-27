@@ -9,7 +9,20 @@ import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 import { LoggedContext } from "../context/LoggedContext";
 import axios from "axios";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
+import { createMuiTheme } from "@material-ui/core";
 import { lightGreen900 } from "material-ui/styles/colors";
+import two from "./icon/two.png";
+import twobefore from "./icon/twobefore.png";
+import one from "./icon/one.png";
+import done from "./icon/correct.png";
+
+const outerTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: lightGreen900
+    }
+  }
+});
 
 const InpForm = ({ finishForm, chooseFile }) => {
   const [title, setTitle] = useState();
@@ -122,9 +135,13 @@ const InpForm = ({ finishForm, chooseFile }) => {
                 <div className="add-live-part">
                   <div className="firststep">
                     {edit ? (
-                      <img src="https://uppic.cc/d/5DzR" className="step" />
+                      <img src={done} className="step" />
                     ) : (
-                      <img src="https://uppic.cc/d/5Dqu" className="step" />
+                      <img
+                        src={one}
+                        className="step"
+                        style={{ color: "#ffce00" }}
+                      />
                     )}
                     <Paper className="firststep-paper softgreen">
                       {/*หลังnextstep */}
@@ -149,11 +166,6 @@ const InpForm = ({ finishForm, chooseFile }) => {
                               <p className="textForm">Description:</p>
                               <p>{description}</p>
                             </div>
-                            {/* <div className="containbut">
-                              <div className="form-button edit" onClick={check}>
-                                EDIT
-                              </div>
-                            </div> */}
                           </div>
                         ) : (
                           /*ก่อนnextstep */
@@ -186,7 +198,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                               <p className="textForm">Date:</p>
                               <MuiPickersUtilsProvider
                                 utils={DateFnsUtils}
-                                theme={muiTheme}
+                                theme={outerTheme}
                               >
                                 <DateTimePicker
                                   value={dateTime}
@@ -222,7 +234,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                   <div>
                     {edit ? (
                       <img
-                        src="https://uppic.cc/d/5Dzs"
+                        src={two}
                         className="step"
                         width="100"
                         height="100"
@@ -231,7 +243,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                       />
                     ) : (
                       <img
-                        src="https://uppic.cc/d/5DzR"
+                        src={twobefore}
                         className="step"
                         width="100"
                         height="100"
@@ -239,15 +251,22 @@ const InpForm = ({ finishForm, chooseFile }) => {
                       />
                     )}
                     {edit ? (
-                      <Paper className="secondstep-paper-active softgreen">
-                        <div className="url-container">
-                          <div className="getlink">GET KEY</div>
-                          <p className="url">{url}</p>
-                          <form>
-                            <input type="file" onChange={handleFile} />
-                          </form>
+                      <div className="set-center-col">
+                        <Paper className="secondstep-paper-active softgreen">
+                          <div className="url-container">
+                            <div className="getlink">GET KEY</div>
+                            <p className="url">{url}</p>
+                            <form>
+                              <input type="file" onChange={handleFile} />
+                            </form>
+                          </div>
+                        </Paper>
+                        <div className="try set-center">
+                          <Link to="/golive" className="finish-but">
+                            <div>FINISH</div>
+                          </Link>
                         </div>
-                      </Paper>
+                      </div>
                     ) : (
                       <div className="secondstep">
                         <Paper className="secondstep-paper"></Paper>
@@ -262,15 +281,9 @@ const InpForm = ({ finishForm, chooseFile }) => {
                 <div>
                   <div className="steps">
                     <div className="stepline">
-                      <img
-                        src="https://uppic.cc/d/5DzR"
-                        className="step-r one"
-                      />
+                      <img src={one} className="step-r one" />
                       <p> -------- </p>
-                      <img
-                        src="https://uppic.cc/d/5Dzs"
-                        className="step-r one"
-                      />
+                      <img src={twobefore} className="step-r one" />
                     </div>
                   </div>
                   {/* second step */}
@@ -313,15 +326,9 @@ const InpForm = ({ finishForm, chooseFile }) => {
                 <div>
                   <div className="steps">
                     <div className="stepline">
-                      <img
-                        src="https://uppic.cc/d/5Dqu"
-                        className="step-r two"
-                      />
+                      <img src={done} className="step-r two" />
                       <p> -------- </p>
-                      <img
-                        src="https://uppic.cc/d/5DzR"
-                        className="step-r two"
-                      />
+                      <img src={two} className="step-r two" />
                     </div>
                   </div>
                   <div>

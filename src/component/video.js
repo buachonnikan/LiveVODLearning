@@ -50,20 +50,23 @@ class Video extends Component {
 
   render() {
     return (
-      <Grid container style={{ height: "100%" }}>
-        <Grid item xs={7} className="content-v">
-          <div className="head-video">
-            <Link to="/live">
-              <ArrowBackIosIcon className="arrow" />
-            </Link>
-            {this.state.live.title}
+      <div className="contain-video content">
+        <div className="video-live">
+          <div>
+            <div className="head-video">
+              <Link to="/live">
+                <ArrowBackIosIcon className="arrow" />
+              </Link>
+              {this.state.live.title}
+            </div>
+            <div className="description">
+              Instructor : {this.state.live.instructor}
+            </div>
+            <div className="description">
+              Subject: {this.state.live.subject}
+            </div>
           </div>
-          <div className="description">
-            Instructor : {this.state.live.instructor}
-          </div>
-          <div className="description">Subject: {this.state.live.subject}</div>
-          <Player fluid={false} width={800} playsInline>
-            {/* <Player playInline> */}
+          <Player playInline>
             <VideoSource
               isVideoChild
               src={
@@ -73,7 +76,6 @@ class Video extends Component {
               }
             />
           </Player>
-          <div className="description">ID: {this.state.id}</div>
           <div className="description">
             Description: {this.state.live.description}
           </div>
@@ -86,11 +88,11 @@ class Video extends Component {
               {l.name.split("-")[1]}
             </a>
           ))}
-        </Grid>
-        <Grid item xs={4} className="chat">
+        </div>
+        <div className="chat-contain">
           <Chat room={this.state.id} />
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   }
 }
