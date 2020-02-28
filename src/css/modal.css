@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   border: 5px dashed #536400;
-  /* border-radius: 2rem !important; */
+  border-radius: 2rem !important;
 }
 .content-modal {
   width: 300px;

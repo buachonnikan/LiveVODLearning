@@ -2,14 +2,15 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../css/base.css";
 import "../css/golive.css";
+import "../css/modal.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { LoggedContext } from "../context/LoggedContext";
 import userr from "./checkType";
 import { Paper } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
 import EditModal from "./editModal";
+import Dialog from "@material-ui/core/Dialog";
 
 const useStyles = makeStyles({
   paper: {
@@ -49,6 +50,7 @@ const LoggedInHome = () => {
   }, []);
   const deleteLive = e => {
     e.preventDefault();
+    alert("คุณต้องการที่จะลบการถ่ายทอดสดนี้ใช่หรือไม่");
     axios
       .post("/_api/deletelive", {
         id: del
@@ -64,6 +66,25 @@ const LoggedInHome = () => {
         setLive(res.data);
       })
       .catch(err => {});
+  };
+
+  const CssDialog = withStyles({
+    paper: {
+      borderRadius: "2rem"
+    }
+  })(Dialog);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const test = () => {
+    console.log("yay");
   };
 
   return (
@@ -114,8 +135,8 @@ const LoggedInHome = () => {
                               >
                                 <i class="fas fa-times"></i>
                               </button>
+                              {console.log("del" + del)}
                             </form>
-                            {/* <Link to={"/edit/" + l._id}>edit</Link> */}
                             <EditModal id={l._id} />
                             <div key={l._id} className="sub-schedule">
                               <div>

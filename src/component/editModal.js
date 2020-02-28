@@ -6,6 +6,13 @@ import { Paper, Modal } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import "../css/modal.css";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+const CssDialog = withStyles({
+  paper: {
+    borderRadius: "2rem"
+  }
+})(Dialog);
 
 function EditModal(props) {
   const [data, setData] = useState({});
@@ -23,6 +30,9 @@ function EditModal(props) {
     setOpen(false);
   };
 
+  // useEffect(()=>{
+  //   setData(props.title)
+  // },[props.title])
   useEffect(() => {
     axios
       .post("/_api/getbyid", {
@@ -30,17 +40,14 @@ function EditModal(props) {
       })
       .then(res => {
         setData(res.data);
+        setTitle(res.data.title);
+        setSubject(res.data.subject);
+        setDescription(res.data.description);
       })
       .catch(function(err) {});
   }, []);
 
   const handelSubmit = e => {
-    e.preventDefault();
-    console.log(title);
-    setTitle("");
-    setSubject("");
-    setDatetime();
-    setDescription("");
     axios
       .put("/_api/editlive", {
         title: title,
@@ -69,7 +76,7 @@ function EditModal(props) {
         onClose={handleClose}
         className="modal"
       > */}
-      <Dialog open={open} onClose={handleClose}>
+      <CssDialog open={open} onClose={handleClose}>
         <Paper className="papersize-modal">
           <div className="content-modal">
             <form onSubmit={handelSubmit}>
@@ -121,7 +128,7 @@ function EditModal(props) {
             </form>
           </div>
         </Paper>
-      </Dialog>
+      </CssDialog>
       {/* </Modal> */}
     </div>
   );
