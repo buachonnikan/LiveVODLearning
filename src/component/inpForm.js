@@ -3,7 +3,7 @@ import "../css/base.css";
 import "../css/form.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import { Paper, TextField, Grid } from "@material-ui/core";
+import { Paper, TextField } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 import { LoggedContext } from "../context/LoggedContext";
@@ -135,12 +135,13 @@ const InpForm = ({ finishForm, chooseFile }) => {
                 <div className="add-live-part">
                   <div className="firststep">
                     {edit ? (
-                      <img src={done} className="step" />
+                      <img src={done} className="step" alt="done" />
                     ) : (
                       <img
                         src={one}
                         className="step"
                         style={{ color: "#ffce00" }}
+                        alt="one"
                       />
                     )}
                     <Paper className="firststep-paper softgreen">
@@ -238,7 +239,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                         className="step"
                         width="100"
                         height="100"
-                        alt=""
+                        alt="two"
                         steptwo
                       />
                     ) : (
@@ -247,7 +248,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
                         className="step"
                         width="100"
                         height="100"
-                        alt="stepteoafter"
+                        alt="steptwoafter"
                       />
                     )}
                     {edit ? (
@@ -281,9 +282,13 @@ const InpForm = ({ finishForm, chooseFile }) => {
                 <div>
                   <div className="steps">
                     <div className="stepline">
-                      <img src={one} className="step-r one" />
+                      <img src={one} className="step-r one" alt="one-r" />
                       <p> -------- </p>
-                      <img src={twobefore} className="step-r one" />
+                      <img
+                        src={twobefore}
+                        className="step-r one"
+                        alt="done-r"
+                      />
                     </div>
                   </div>
                   {/* second step */}

@@ -43,9 +43,9 @@ function App() {
           sent: sent
         }}
       >
-        <NavHome />
         {/* <hr /> */}
         <BrowserRouter>
+          <NavHome />
           <Switch>
             <Route path="/live" component={Live} />
             <Route path="/course" component={Course} />

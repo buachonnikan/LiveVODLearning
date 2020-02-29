@@ -29,10 +29,6 @@ function EditModal(props) {
   const handleClose = () => {
     setOpen(false);
   };
-
-  // useEffect(()=>{
-  //   setData(props.title)
-  // },[props.title])
   useEffect(() => {
     axios
       .post("/_api/getbyid", {

@@ -40,7 +40,7 @@ const TList = () => {
       .catch(err => {});
   }, []);
   const name = subject.map(data => (
-    <Link className="tname" to={"/subject/" + data}>
+    <Link className="tname" to={"/subject/" + data} key={data._id}>
       <div className="teacher-course">
         <div id="tpic" className="set-center">
           {data[0]}
@@ -71,7 +71,7 @@ const TList = () => {
             <div className="head-content">
               <div>
                 <Link to={{ pathname: "/course", state: { detail: null } }}>
-                  <ArrowBackIosIcon className="arrow" />
+                  <ArrowBackIosIcon id="arrow" />
                 </Link>
                 <h1 className="subhead" id="s-subhead">
                   รายชื่อรายวิชา

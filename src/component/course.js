@@ -6,7 +6,7 @@ import "../css/base.css";
 import "../css/responsive.css";
 // import "../css/course.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Search, ContactlessOutlined } from "@material-ui/icons";
+import { Search, ContactlessOutlined, NextWeek } from "@material-ui/icons";
 import { black } from "@material-ui/core/colors";
 import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 import SubpaperC from "./subpaperC";
@@ -27,11 +27,10 @@ const Course = props => {
   const [all, setAll] = useState([]);
   const [s, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [p, setP] = useState(1);
   const [maxPage, setMax] = useState(1);
   var amount;
-  // const test = useLocation.word;
   useEffect(() => {
-    // console.log(props.location.state.detail);
     axios
       .post("/_api/getpage", {
         page: 1
@@ -39,6 +38,7 @@ const Course = props => {
       .then(res => {
         setVideo(res.data.videos);
         setMax(res.data.maxpage);
+        // setMax(5);
       })
       .catch(err => {});
     if (props.location.state.detail !== undefined) {
@@ -47,7 +47,6 @@ const Course = props => {
           word: props.location.state.detail
         })
         .then(res => {
-          console.log(res.data);
           setVideo(res.data);
         });
     } else {
@@ -58,7 +57,7 @@ const Course = props => {
         })
         .catch(err => {});
     }
-  }, []);
+  }, [props.location.state.detail]);
   const Video = video.map(data => (
     <SubpaperC
       title={data.title}
@@ -76,7 +75,7 @@ const Course = props => {
     e.preventDefault();
     axios
       .post("/_api/getpage", {
-        page: page
+        page: p
       })
       .then(res => {
         setVideo(res.data.videos);
@@ -84,15 +83,52 @@ const Course = props => {
   };
   const handleSearch = e => {
     e.preventDefault();
-    console.log(s);
     axios
       .post("/_api/getbyword", {
         word: s
       })
       .then(res => {
-        console.log(res.data);
         setVideo(res.data);
       });
+  };
+  const next = e => {
+    if (maxPage === 2) {
+      if (p === 1) {
+        setP(p + 1);
+        document.getElementById("next").style.display = "none";
+        document.getElementById("back").style.display = "initial";
+      }
+    } else {
+      if (p < maxPage) {
+        setP(p + 1);
+        document.getElementById("back").style.display = "initial";
+        if (p === maxPage - 1) {
+          document.getElementById("next").style.display = "none";
+        }
+      }
+    }
+  };
+  const back = e => {
+    if (maxPage === 2) {
+      if (p <= 2) {
+        setP(p - 1);
+        document.getElementById("back").style.display = "none";
+        document.getElementById("next").style.display = "initial";
+      }
+    } else {
+      if (p > 1) {
+        setP(p - 1);
+        if (p === 2) {
+          setP(1);
+          document.getElementById("back").style.display = "none";
+        }
+        if (p === maxPage) {
+          document.getElementById("back").style.display = "initial";
+          setP(p - 1);
+          document.getElementById("next").style.display = "initial";
+        }
+      }
+    }
   };
   return (
     <div>
@@ -112,7 +148,7 @@ const Course = props => {
               <div className="filter nor">
                 <Link to="/teacher-list">
                   <button class="filter_but" id="filter_t">
-                    อาจารย์ผู้สอน
+                    รายชื่อผู้สอน
                   </button>
                 </Link>
                 <Link to="/subject-list">
@@ -136,7 +172,6 @@ const Course = props => {
                       <CssTextField
                         {...params}
                         label="search"
-                        // id="search"
                         margin="normal"
                       ></CssTextField>
                     )}
@@ -154,6 +189,7 @@ const Course = props => {
                       <button
                         className="paginat-but set-center"
                         value={i}
+                        key={i}
                         onClick={e => setPage(e.target.value)}
                       >
                         {i}
@@ -167,19 +203,39 @@ const Course = props => {
         </div>
       </div>
 
-      {/* <button className="paginat-but set-center">{"<"}</button> */}
       <form onSubmit={handelSubmit} className="paginate nor">
-        {amount.map(i => (
+        <button
+          onClick={back}
+          id="back"
+          type="submit"
+          name="back"
+          className="paginat-but set-center"
+          style={{ display: "none" }}
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button
+          className="paginat-but set-center"
+          value={p}
+          onClick={e => setPage(e.target.value)}
+          type="submit"
+        >
+          {p}
+        </button>
+        {maxPage === 1 ? (
+          <button onClick={next} style={{ display: "none" }}></button>
+        ) : (
           <button
+            onClick={next}
+            id="next"
+            type="submit"
+            name="next"
             className="paginat-but set-center"
-            value={i}
-            onClick={e => setPage(e.target.value)}
           >
-            {i}
+            <i class="fas fa-chevron-right"></i>
           </button>
-        ))}
+        )}
       </form>
-      {/* <button className="paginat-but set-center">{">"}</button> */}
     </div>
   );
 };

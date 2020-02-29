@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import Navbar from "./nav";
-import Grid from "@material-ui/core/Grid";
 import "../css/base.css";
 import "../css/responsive.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -49,6 +47,7 @@ const Live = () => {
           <div className="r-live-part">
             {now.map(data => (
               <Subpaper
+                key={data._id}
                 title={data.title}
                 instructor={data.instructor}
                 time={data.dateTime}

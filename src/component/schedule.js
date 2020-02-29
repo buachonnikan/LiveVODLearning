@@ -20,7 +20,7 @@ function Schedule(props) {
             <div className="container-overflow-s">
               <div id="schedule">
                 {props.live.map(l => (
-                  <div>
+                  <div key={l._id}>
                     <div alt="delete" onClick="">
                       delete
                     </div>
@@ -63,7 +63,7 @@ function Schedule(props) {
           <div className="container-overflow-s">
             <div id="schedule">
               {props.live.map(l => (
-                <div>
+                <div key={l._id}>
                   <div key={l._id} className="sub-schedule">
                     <p>
                       <span style={classes.bold}>Title: </span>

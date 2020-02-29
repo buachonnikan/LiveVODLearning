@@ -25,9 +25,7 @@ const LoggedInHome = () => {
   const classes = useStyles();
   const [live, setLive] = useState([]);
   const [del, setDel] = useState("");
-  const { isLogged, setLogged, user, setUser, sent } = useContext(
-    LoggedContext
-  );
+  const { isLogged, user, sent } = useContext(LoggedContext);
 
   useEffect(() => {
     if (sent) {
@@ -83,10 +81,6 @@ const LoggedInHome = () => {
     setOpen(false);
   };
 
-  const test = () => {
-    console.log("yay");
-  };
-
   return (
     <div>
       <div>
@@ -127,7 +121,7 @@ const LoggedInHome = () => {
                       <div id="schedule">
                         {live.map(l => (
                           <div>
-                            <form onSubmit={deleteLive}>
+                            <form onSubmit={deleteLive} key={l._id}>
                               <button
                                 alt="delete"
                                 className="delete"
@@ -191,7 +185,7 @@ const LoggedInHome = () => {
                   <div className="container-overflow-s">
                     <div id="schedule">
                       {live.map(l => (
-                        <div>
+                        <div key={l._id}>
                           <div key={l._id} className="sub-schedule">
                             <p>
                               <span style={classes.bold}>Title: </span>

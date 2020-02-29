@@ -3,15 +3,11 @@ import axios from "axios";
 import Paper from "./paper";
 import "../css/base.css";
 import { BrowserRouter as route, Link } from "react-router-dom";
-import { Grid, TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Search } from "@material-ui/icons";
 import { Autocomplete } from "@material-ui/lab";
-import {
-  withStyles,
-  makeStyles,
-  createMuiTheme
-} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 const CssTextField = withStyles({
   root: {
@@ -47,7 +43,7 @@ function Teacher(props) {
       .then(res => {
         setSubject(res.data);
       });
-  }, []);
+  }, [props.name]);
   const handleSearchS = e => {
     e.preventDefault();
     axios
@@ -82,7 +78,7 @@ function Teacher(props) {
           <div className="head-part">
             {/* <Link to={{ pathname: "/course", state: { detail: null } }}> */}
             <Link to={"/teacher-list"}>
-              <ArrowBackIosIcon className="arrow" />
+              <ArrowBackIosIcon id="arrow" />
             </Link>
             <div id="Tpic"></div>
             <h1 className="name-sub">{props.name}</h1>

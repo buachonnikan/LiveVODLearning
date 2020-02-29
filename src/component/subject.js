@@ -7,11 +7,7 @@ import { Paper, TextField } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Autocomplete } from "@material-ui/lab";
 import { Search } from "@material-ui/icons";
-import {
-  withStyles,
-  makeStyles,
-  createMuiTheme
-} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 const CssTextField = withStyles({
   root: {
@@ -37,7 +33,7 @@ function Subject(props) {
         setVideo(res.data);
       })
       .catch(function(err) {});
-  }, []);
+  }, [props.name]);
 
   const handleSearch = e => {
     e.preventDefault();
@@ -67,7 +63,7 @@ function Subject(props) {
     <div className="content">
       <div className="head-content">
         <Link to={"/subject-list"}>
-          <ArrowBackIosIcon className="arrow" />
+          <ArrowBackIosIcon id="arrow" />
         </Link>
         <h1 className="name-sub">{props.name}</h1>
       </div>

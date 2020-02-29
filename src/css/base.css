@@ -236,69 +236,6 @@ button:focus {
 } */
 
 /* login */
-.navhome {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  z-index: 2;
-}
-.logged {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  height: 70px;
-}
-.login-but {
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  color: #536400;
-  flex-basis: 70px;
-}
-.login-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #536400;
-  flex-basis: 70px;
-}
-.log-contain {
-  display: flex;
-  justify-content: flex-end;
-}
-.log-box {
-  width: 300px;
-  height: 180px;
-  margin-right: 30px;
-  background-color: #f2f3ee !important;
-}
-.login-form {
-  padding: 40px 20px;
-}
-.i > input {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid black;
-  float: right;
-  width: 170px;
-  background-color: transparent;
-}
-.i {
-  margin-top: 10px;
-}
-#login-but {
-  height: 35px;
-  border-radius: 2rem;
-  border: none;
-  width: 90px;
-  font-weight: 600;
-  color: white;
-  background-color: #536400;
-  cursor: pointer;
-  margin-top: 15px;
-}
 
 /* ---home--- */
 .home {

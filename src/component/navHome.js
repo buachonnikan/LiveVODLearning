@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import "../css/base.css";
+import "../css/nav.css";
 import { Paper } from "@material-ui/core";
 import { LoggedContext } from "../context/LoggedContext";
+import Nav from "./nav";
 
 const NavHome = () => {
   const { isLogged, setLogged, user, setUser } = useContext(LoggedContext);
@@ -47,56 +48,60 @@ const NavHome = () => {
 
   return (
     <div className="navhome">
-      {isLogged ? (
-        success ? (
-          <div className="logged">
-            <div className="login-name">{user.name}</div>
-            <div className="login-but" onClick={clickLogout}>
-              Logout
-            </div>
-          </div>
-        ) : (
-          (alert("Wrong Username or Password"),
-          (
+      <Nav />
+      <div>
+        {isLogged ? (
+          success ? (
             <div className="logged">
-              <div className="login-but" onClick={clickLogin}>
-                Login
+              <div className="login-name">{user.name}</div>
+              <div className="login-but" onClick={clickLogout}>
+                Logout
               </div>
             </div>
-          ))
-        )
-      ) : (
-        <div className="logged">
-          <div className="login-but" onClick={clickLogin}>
-            Login
+          ) : (
+            (alert("Wrong Username or Password"),
+            (
+              <div className="logged">
+                <div className="login-but" onClick={clickLogin}>
+                  Login
+                </div>
+              </div>
+            ))
+          )
+        ) : (
+          <div className="logged">
+            <div className="login-but" onClick={clickLogin}>
+              Login
+            </div>
           </div>
-        </div>
-      )}
-      {log ? (
-        <div className="log-contain">
-          <Paper className="log-box">
-            <form className="login-form" onSubmit={handelSubmit}>
-              <div className="i">
-                <label>Username: </label>
-                <input
-                  value={username}
-                  onChange={e => setU(e.target.value)}
-                ></input>
-              </div>
-              <div className="i">
-                <label>Password: </label>
-                <input
-                  value={password}
-                  onChange={e => setP(e.target.value)}
-                ></input>
-              </div>
-              <button type="submit" id="login-but">
-                Login
-              </button>
-            </form>
-          </Paper>
-        </div>
-      ) : null}
+        )}
+        {log ? (
+          <div className="log-contain">
+            <Paper className="log-box">
+              <form className="login-form" onSubmit={handelSubmit}>
+                <div className="i">
+                  <label>Username: </label>
+                  <input
+                    value={username}
+                    onChange={e => setU(e.target.value)}
+                  ></input>
+                </div>
+                <div className="i">
+                  <label>Password: </label>
+                  <input
+                    value={password}
+                    onChange={e => setP(e.target.value)}
+                  ></input>
+                </div>
+
+                <button type="submit" id="login-but">
+                  Login
+                </button>
+              </form>
+            </Paper>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

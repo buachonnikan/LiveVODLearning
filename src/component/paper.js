@@ -4,20 +4,8 @@ import Subpaper from "./subpaper";
 import SubpaperC from "./subpaperC";
 import { BrowserRouter as route, Link } from "react-router-dom";
 import "../css/base.css";
-// import { Link } from "react-router-dom";
 
 function paper(props) {
-  const classes = {
-    containerVideo: {
-      padding: "20px",
-      position: "relative"
-    },
-    containerOverflow: {
-      overflow: "auto",
-      width: "auto",
-      minHeight: "250px"
-    }
-  };
   const liveVideo = props.live.map(data => (
     <Subpaper
       title={data.title}
@@ -55,9 +43,9 @@ function paper(props) {
       <div className="container-video">
         <p>{props.head}</p>
         <div className="container-overflow">
-          {props.type == "l"
+          {props.type === "l"
             ? liveVideo
-            : props.type == "sc"
+            : props.type === "sc"
             ? subjectCourse
             : courseVideo}
         </div>

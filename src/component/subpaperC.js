@@ -4,33 +4,6 @@ import { Link } from "react-router-dom";
 import "../css/subpaper.css";
 
 function Subpaper(props) {
-  const classes = {
-    root: {
-      marginBottom: "30px"
-    },
-    testt: {
-      display: "flex"
-    },
-    video: {
-      background: "gray",
-      width: "150px",
-      height: "100px",
-      display: "inline-block"
-    },
-    title: {
-      width: "auto"
-    },
-    instructor: {
-      width: "100%"
-    },
-    time: {
-      width: "100%"
-    },
-    Link: {
-      textDecoration: "none",
-      color: "black"
-    }
-  };
   return (
     <div className="root">
       <Link to={props.go + props.id} className="Link">
@@ -39,6 +12,7 @@ function Subpaper(props) {
             <img
               src={"/_livevod/" + props.id + "/thumbnail.png"}
               className="video"
+              alt={props._id}
             />
           </Grid>
           <Grid item xs={1} className="nor"></Grid>

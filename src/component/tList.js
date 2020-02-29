@@ -46,7 +46,7 @@ const TList = () => {
   };
 
   const name = instructor.map(data => (
-    <Link className="tname" to={"/teacher/" + data.name}>
+    <Link className="tname" to={"/teacher/" + data.name} key={data._id}>
       <div className="teacher-course">
         <div id="tpic" className="set-center">
           {/* {data.name[0]} */}
@@ -63,10 +63,10 @@ const TList = () => {
             <div className="head-content">
               <div>
                 <Link to={{ pathname: "/course", state: { detail: null } }}>
-                  <ArrowBackIosIcon className="arrow" />
+                  <ArrowBackIosIcon id="arrow" />
                 </Link>
                 <h1 className="subhead" id="t-subhead">
-                  รายชื่ออาจารย์ผู้สอน
+                  รายชื่อผู้สอน
                 </h1>
               </div>
             </div>
