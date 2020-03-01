@@ -22,9 +22,6 @@ export function useWillUnmount(cb) {
   }, [cb]);
 }
 const Chat = ({ c, t }) => {
-  // const [chat, setChat] = useState("");
-  // const [chats, setChats] = useState([]);
-  // const [timestamp, setTime] = useState();
   const [color, setColor] = useState("");
   const colors = ["#e78500", "#ffce00", "#94b811"];
 
@@ -39,9 +36,17 @@ const Chat = ({ c, t }) => {
   function time(t, c) {
     var ms = moment(c).diff(moment(t));
     var d = moment.duration(ms);
-    var h = Math.floor(d.asHours()) < 0 ? 0 : Math.floor(d.asHours());
-    var s = moment.utc(h + ms).format("hh:mm:ss");
-    return s;
+    var res =
+      (d._data.hours < 9
+        ? "0" + d._data.hours.toString()
+        : d._data.hours.toString()) +
+      ":" +
+      (d._data.minutes < 9
+        ? "0" + d._data.hours.toString()
+        : d._data.minutes.toString()) +
+      ":" +
+      d._data.seconds.toString();
+    return res;
   }
   var randomColor = Math.floor(Math.random() * 16777215).toString(16);
   return (
