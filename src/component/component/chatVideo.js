@@ -12,35 +12,35 @@ export function useDidMount(cb) {
       scope.current.isMounted = true;
       cb();
     }
-  }, [cb]);
+  }, []);
 }
 
 export function useWillUnmount(cb) {
   const scope = useRef({ isMounted: false });
   useEffect(() => {
     return cb;
-  }, [cb]);
+  }, []);
 }
 const Chat = ({ c, t }) => {
-  // const [chat, setChat] = useState("");
-  // const [chats, setChats] = useState([]);
-  // const [timestamp, setTime] = useState();
+  const [chat, setChat] = useState("");
+  const [chats, setChats] = useState([]);
+  const [timestamp, setTime] = useState();
   const [color, setColor] = useState("");
   const colors = ["#e78500", "#ffce00", "#94b811"];
+
+  useEffect(() => {
+    getRandomColor();
+  }, []);
 
   const getRandomColor = () => {
     var item = colors[Math.floor(Math.random() * colors.length)];
     setColor(item);
   };
-  useEffect(() => {
-    getRandomColor();
-  }, [getRandomColor]);
-
   function time(t, c) {
     var ms = moment(c).diff(moment(t));
     var d = moment.duration(ms);
     var h = Math.floor(d.asHours()) < 0 ? 0 : Math.floor(d.asHours());
-    var s = moment.utc(h + ms).format("hh:mm:ss");
+    var s = moment.utc(ms).format("hh:mm:ss");
     return s;
   }
   var randomColor = Math.floor(Math.random() * 16777215).toString(16);

@@ -38,7 +38,7 @@ const Course = props => {
       .then(res => {
         setVideo(res.data.videos);
         setMax(res.data.maxpage);
-        console.log(res.data.maxpage);
+        // setMax(5);
       })
       .catch(err => {});
     if (props.location.state.detail !== undefined) {

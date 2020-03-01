@@ -6,14 +6,12 @@ import "../css/base.css";
 import "../css/schedule.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import { Player } from "video-react";
-import ChatVideo from "./chatVideo";
-import "../../node_modules/video-react/dist/video-react.css";
 import VideoSource from "./videoSource";
+import { Player } from "video-react";
+import Chat from "./chat";
+import "../../node_modules/video-react/dist/video-react.css";
 
-// ทำHistory*********************************************************
-
-class CourseVideo extends Component {
+class Video extends Component {
   state = {
     id: this.props.match.params.streamkey,
     live: {
@@ -22,8 +20,7 @@ class CourseVideo extends Component {
       subject: "",
       dateTime: "",
       description: "",
-      files: [],
-      chat: []
+      files: []
     }
   };
   handleChange(event) {
@@ -48,19 +45,16 @@ class CourseVideo extends Component {
         });
         console.log(this.state.live);
       })
-      .catch(function(err) {
-        // console.log(err);
-      });
+      .catch(function(err) {});
   }
 
   render() {
     return (
-      // <Grid container style={{ height: "100%" }}>
       <div className="contain-video content">
         <div className="video-live">
           <div>
             <div className="head-video">
-              <Link to={{ pathname: "/course", state: { detail: null } }}>
+              <Link to="/live">
                 <ArrowBackIosIcon className="arrow" />
               </Link>
               {this.state.live.title}
@@ -96,11 +90,11 @@ class CourseVideo extends Component {
           ))}
         </div>
         <div className="chat-contain">
-          <ChatVideo c={this.state.live.chat} t={this.state.live.startTime} />
+          <Chat room={this.state.id} />
         </div>
       </div>
     );
   }
 }
 
-export default CourseVideo;
+export default Video;

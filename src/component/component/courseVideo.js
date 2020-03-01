@@ -96,7 +96,10 @@ class CourseVideo extends Component {
           ))}
         </div>
         <div className="chat-contain">
-          <ChatVideo c={this.state.live.chat} t={this.state.live.startTime} />
+          <ChatVideo
+            c={this.state.live.chat}
+            time={this.state.live.startTime}
+          />
         </div>
       </div>
     );

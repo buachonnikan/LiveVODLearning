@@ -11,31 +11,26 @@ export function useDidMount(cb) {
       scope.current.isMounted = true;
       cb();
     }
-  }, [cb]);
+  }, []);
 }
 
 export function useWillUnmount(cb) {
   const scope = useRef({ isMounted: false });
   useEffect(() => {
     return cb;
-  }, [cb]);
+  }, []);
 }
 const Chat = ({ room }) => {
   const [chat, setChat] = useState("");
   const [chats, setChats] = useState([]);
   const [timestamp, setTime] = useState();
-  const [color, setColor] = useState("#e78500");
+  const [color, setColor] = useState("");
   const colors = ["#e78500", "#ffce00", "#94b811"];
   const typeChat = c => setChat(c);
   const pullingRef = useRef({ isRunning: true, cancelFunc: {} });
 
-  // const getRandomColor = () => {
-  //   var item = colors[Math.floor(Math.random() * colors.length)];
-  //   setColor(item);
-  // };
-
   useEffect(() => {
-    // getRandomColor();
+    getRandomColor();
     const pull = () => {
       axios
         .post("/_api/message/pull", {
@@ -49,15 +44,19 @@ const Chat = ({ room }) => {
           } else {
             console.log("END PULLING");
           }
-        })
-        .catch(e => setTimeout(pull, 0));
+        });
     };
     pull();
 
     return () => {
       pullingRef.current.isRunning = false;
     };
-  }, [room, timestamp]);
+  }, []);
+
+  const getRandomColor = () => {
+    var item = colors[Math.floor(Math.random() * colors.length)];
+    setColor(item);
+  };
 
   const handelSubmit = e => {
     e.preventDefault();
@@ -84,9 +83,7 @@ const Chat = ({ room }) => {
               {c.name[0]}
             </div>
             <div className="text-chat">{c.chat}</div>
-            <div className="time-chat">
-              {new Date(c.timestamp).toLocaleString().split(", ")[1]}
-            </div>
+            <div className="time-chat">{c.timestamp}</div>
           </div>
         ))}
       </div>
