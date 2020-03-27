@@ -91,6 +91,7 @@ const NavHome = () => {
                   <input
                     value={password}
                     onChange={e => setP(e.target.value)}
+                    type="password"
                   ></input>
                 </div>
 

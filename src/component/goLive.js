@@ -45,25 +45,27 @@ const LoggedInHome = () => {
         setLive(res.data);
       })
       .catch(err => {});
-  }, []);
+  }, [isLogged, sent, user.type]);
   const deleteLive = e => {
     e.preventDefault();
-    alert("คุณต้องการที่จะลบการถ่ายทอดสดนี้ใช่หรือไม่");
-    axios
-      .post("/_api/deletelive", {
-        id: del
-      })
-      .then(res => {})
-      .catch(function(err) {
-        console.log(err);
-      });
-    userr
-      .axiosAuthen()
-      .get("/_api/getliveinstructor")
-      .then(res => {
-        setLive(res.data);
-      })
-      .catch(err => {});
+    var c = window.confirm("คุณต้องการที่จะลบการถ่ายทอดสดนี้ใช่หรือไม่");
+    if (c === true) {
+      axios
+        .post("/_api/deletelive", {
+          id: del
+        })
+        .then(res => {})
+        .catch(function(err) {
+          console.log(err);
+        });
+      userr
+        .axiosAuthen()
+        .get("/_api/getliveinstructor")
+        .then(res => {
+          setLive(res.data);
+        })
+        .catch(err => {});
+    }
   };
 
   const CssDialog = withStyles({
@@ -129,7 +131,6 @@ const LoggedInHome = () => {
                               >
                                 <i class="fas fa-times"></i>
                               </button>
-                              {console.log("del" + del)}
                             </form>
                             <EditModal id={l._id} />
                             <div key={l._id} className="sub-schedule">

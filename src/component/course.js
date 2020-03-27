@@ -63,7 +63,7 @@ const Course = props => {
       title={data.title}
       instructor={data.instructor}
       subject={data.subject}
-      time={data.dateTime}
+      time={data.startTime}
       key={data._id}
       id={data._id}
       rtmp={data.rtmp}

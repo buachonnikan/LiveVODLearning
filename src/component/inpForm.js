@@ -82,6 +82,7 @@ const InpForm = ({ finishForm, chooseFile }) => {
     setdateTime();
     setDescription("");
     setUrl("");
+    console.log("dt:" + dateTime);
     axiosAuthen
       .post("/_api/addlive", {
         title: title,

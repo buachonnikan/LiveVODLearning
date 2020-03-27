@@ -27,6 +27,10 @@ function ScheduleLive(props) {
                   {l.subject}
                 </p>
                 <p>
+                  <span style={classes.bold}>Instructor: </span>
+                  {l.instructor}
+                </p>
+                <p>
                   <span style={classes.bold}>Date: </span>{" "}
                   {new Date(l.dateTime).toLocaleString().split(", ")[0]}
                 </p>

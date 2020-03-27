@@ -50,8 +50,7 @@ const Live = () => {
                 key={data._id}
                 title={data.title}
                 instructor={data.instructor}
-                time={data.dateTime}
-                key={data._id}
+                time={data.startTime}
                 id={data._id}
                 rtmp={data.rtmp}
               />

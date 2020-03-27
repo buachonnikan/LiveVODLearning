@@ -119,7 +119,6 @@
 .finish-but {
   width: 65%;
   height: 60px;
-  /* border: 5px solid #ffce00; */
   background-color: #ffce00;
   border-radius: 2rem;
   font-size: 30px;
@@ -129,13 +128,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /* transition: width 0.3s; */
   transition: letter-spacing 0.3s, width 0.3s;
 }
 .finish-but:hover {
-  /* border: none;
-  background-color: #536400;
-  color: white; */
   width: 70%;
   letter-spacing: 2px;
 }
@@ -143,6 +138,12 @@
   width: 100%;
   height: 250px;
 }
+
+.lable {
+  background-color: firebrick;
+  color: darkblue;
+}
+
 a {
   text-decoration: none;
 }
